@@ -32,6 +32,7 @@ def main():
     r = sub.add_parser("run"); r.add_argument("--area", required=True); r.add_argument("--skip-sentinel", action="store_true"); r.add_argument("--skip-images", action="store_true")
     sub.add_parser("national")
     sub.add_parser("index")
+    im = sub.add_parser("images"); im.add_argument("--area", default="all")
     a = sub.add_parser("all"); a.add_argument("--skip-sentinel", action="store_true")
     rg = sub.add_parser("regression"); rg.add_argument("--area", default="rollag")
     args = ap.parse_args()
@@ -53,6 +54,10 @@ def main():
         write_index()
     elif args.cmd == "index":
         write_index()
+    elif args.cmd == "images":
+        from .area import render_images
+        for slug in (areas.keys() if args.area == "all" else [args.area]):
+            render_images(slug, areas[slug])
     elif args.cmd == "regression":
         from .regression import check
         check(args.area)

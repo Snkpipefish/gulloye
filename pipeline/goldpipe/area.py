@@ -353,3 +353,18 @@ def _auto_satcheck(img: Image.Image, mpp: float) -> str:
     if green > 0.6:
         parts.append("tett vegetasjon – elva delvis skjult")
     return "Automatisk bildeanalyse: " + (", ".join(parts) if parts else "ingen tydelige trekk") + "."
+
+
+def render_images(slug: str, area: dict) -> None:
+    """Regenererer satellittutsnitt og amtskart fra eksisterende area.json (uten å kjøre modellen)."""
+    out = DATA_DIR / "areas" / slug
+    meta = json.loads((out / "area.json").read_text(encoding="utf-8"))
+    cands = meta["candidates"]; bbox = meta["bbox"]
+    for c in cands:
+        img, mpp = esri.crop(c["lat"], c["lon"])
+        esri.annotate(img, mpp, f"{c['rank']} {c['klasse']} – {c['navn']}").save(out / f"satcheck_{c['rank']}.jpg", quality=82)
+    am = kartverket.amtskart_image(bbox, width=1600)
+    s_, w_, n_, e_ = bbox
+    pts = [((c["lon"] - w_) / (e_ - w_) * am.width, (n_ - c["lat"]) / (n_ - s_) * am.height, str(c["rank"]), c["klasse"]) for c in cands]
+    X.draw_markers(am, pts).save(out / "amtskart.jpg", quality=80)
+    log(f"{slug}: {len(cands)} satellittutsnitt + amtskart regenerert")

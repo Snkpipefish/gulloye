@@ -120,11 +120,13 @@ def anomaly_png(z: np.ndarray, path: Path, vmin=1.0, vmax=4.0):
 
 def draw_markers(img: Image.Image, pts: list[tuple[float, float, str, str]]) -> Image.Image:
     """pts: (x, y, label, klasse)"""
+    from .sources.esri import _font
     d = ImageDraw.Draw(img)
+    f = _font(14)
     col = {"A": (192, 57, 43), "B": (230, 126, 34), "C": (241, 196, 15)}
     for x, y, lab, k in pts:
-        r = 13
+        r = 14
         d.ellipse((x - r, y - r, x + r, y + r), fill=col.get(k, (200, 0, 0)), outline=(255, 255, 255), width=2)
-        tw = d.textlength(lab)
-        d.text((x - tw / 2, y - 6), lab, fill=(255, 255, 255))
+        tw = d.textlength(lab, font=f)
+        d.text((x - tw / 2, y - 8), lab, fill=(255, 255, 255), font=f)
     return img

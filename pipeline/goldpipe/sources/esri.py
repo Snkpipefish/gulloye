@@ -3,7 +3,16 @@ from __future__ import annotations
 
 import math
 
-from PIL import Image, ImageDraw
+from PIL import Image, ImageDraw, ImageFont
+
+
+def _font(size=13):
+    for name in ("DejaVuSans.ttf", "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", "LiberationSans-Regular.ttf"):
+        try:
+            return ImageFont.truetype(name, size)
+        except OSError:
+            continue
+    return ImageFont.load_default()
 
 from ..cache import cached_get
 
@@ -46,8 +55,9 @@ def annotate(img: Image.Image, m_per_px: float, title: str = "") -> Image.Image:
     d.line((c[0], c[1] + 10, c[0], c[1] + 22), fill=col, width=2)
     bar = int(100 / m_per_px)
     d.rectangle((10, h - 18, 10 + bar, h - 14), fill=(255, 255, 255))
-    d.text((10, h - 32), "100 m", fill=(255, 255, 255))
+    f = _font(13)
+    d.text((10, h - 34), "100 m", fill=(255, 255, 255), font=f)
     if title:
-        d.rectangle((0, 0, w, 18), fill=(0, 0, 0))
-        d.text((6, 3), title, fill=(255, 255, 255))
+        d.rectangle((0, 0, w, 20), fill=(0, 0, 0))
+        d.text((6, 3), title, fill=(255, 255, 255), font=f)
     return img
