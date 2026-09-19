@@ -16,7 +16,8 @@ def _hav(lat1, lon1, lat2, lon2):
 
 def pick_peaks(segs: list[dict], n_max=15, min_sep=800.0) -> list[dict]:
     """Lokale maksima i P med minsteavstand (m) mellom valgte punkter."""
-    order = sorted(range(len(segs)), key=lambda i: -segs[i]["P"])
+    # hopp over de to første segmentene i hver kjede (start-artefakter: ufullstendig helning/avsetning)
+    order = sorted((i for i in range(len(segs)) if segs[i].get("km", 1) >= 0.2), key=lambda i: -segs[i]["P"])
     chosen: list[dict] = []
     for i in order:
         s = segs[i]

@@ -23,7 +23,10 @@ MIN_UPSTREAM_KM = 1.5    # modeller bare veier med minst så mye oppstrøms nett
 
 
 def _norm(name: str | None) -> str:
-    return (name or "").strip().lower()
+    """Normaliserer elvenavn: små bokstaver, uten diakritiske tegn (Iškorasjohka == Iskorasjohka)."""
+    import unicodedata
+    n = unicodedata.normalize("NFKD", (name or "").strip().lower())
+    return "".join(ch for ch in n if not unicodedata.combining(ch))
 
 
 @dataclass

@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-19T21:14:24+00:00",
+ "generated": "2026-09-19T22:13:03+00:00",
  "grid_km": 1,
  "shape": [
   1477,
@@ -62,5 +62,5 @@
  "capture_top20": 0.6222222222222222,
  "n_gold": 104,
  "description": "Weights of evidence (Bonham-Carter) over 1 km-grid trent på 104 NGU-gullpunkter, kombinert 50/50 med fuzzy gamma (γ=0.9). Bevislag: nærhet basemetall-mineralisering < 3 km, basemetall-mineralisering 3–10 km, magnetisk gradient ≥ p80, lineamenttetthet ≥ p80, relieff ≥ p60. Topp 20 % av arealet fanger 62 % av kjente gullpunkter. Kilder: NGU, Copernicus DEM.",
- "seconds": 14
+ "seconds": 31
 }

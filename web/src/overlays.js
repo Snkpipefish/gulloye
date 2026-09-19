@@ -46,10 +46,6 @@ export class Overlays {
       const layer = this.viewer.imageryLayers.addImageryProvider(prov);
       layer.alpha = 0.75; this.imagery.national = layer; this.national = meta;
     } catch (e) { console.warn('nasjonalt lag mangler', e); }
-    try {
-      const gj = await Cesium.GeoJsonDataSource.load(DATA + 'national/metaller_flater.geojson', { clampToGround: true, stroke: Cesium.Color.fromCssColorString('#5dff8a').withAlpha(0.8), fill: Cesium.Color.fromCssColorString('#5dff8a').withAlpha(0.15), strokeWidth: 1.5 });
-      gj.show = false; this.viewer.dataSources.add(gj); this.sources.metaller = gj;
-    } catch (e) { /* valgfritt */ }
     this.viewer.scene.requestRender();
   }
 
@@ -109,8 +105,25 @@ export class Overlays {
     return o;
   }
 
+  async loadMetaller() {
+    if (this.sources.metaller || this._metLoading) return;
+    this._metLoading = true;
+    try {
+      const gj = await Cesium.GeoJsonDataSource.load(DATA + 'national/metaller_flater.geojson', { clampToGround: false, stroke: Cesium.Color.fromCssColorString('#5dff8a').withAlpha(0.8), fill: Cesium.Color.fromCssColorString('#5dff8a').withAlpha(0.15), strokeWidth: 1.5 });
+      gj.show = this.state.metaller; this.viewer.dataSources.add(gj); this.sources.metaller = gj;
+    } catch (e) { console.warn('metaller_flater mangler', e); }
+    this.viewer.scene.requestRender();
+  }
+
+  /** Nasjonalt varmekart vises bare fra høyden (over 150 km); nær bakken forstyrrer det elvemodellen. */
+  updateByAltitude(heightM) {
+    if (this.imagery.national) this.imagery.national.show = this.state.national && heightM > 150000;
+  }
+
   toggle(id, on) {
     this.state[id] = on;
+    if (id === 'metaller' && on) this.loadMetaller();
+    if (id === 'national') { this.updateByAltitude(this.viewer.camera.positionCartographic.height); return this.viewer.scene.requestRender(); }
     if (this.sources[id]) this.sources[id].show = on;
     if (this.imagery[id]) this.imagery[id].show = on;
     this.viewer.scene.requestRender();

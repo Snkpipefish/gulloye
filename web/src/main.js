@@ -54,6 +54,7 @@ async function main() {
   viewer.camera.percentageChanged = 0.01;
   function updateCoords() {
     const c = viewer.camera.positionCartographic;
+    overlays.updateByAltitude(c.height);
     $('coords').textContent = `LAT ${Cesium.Math.toDegrees(c.latitude).toFixed(4)}  LON ${Cesium.Math.toDegrees(c.longitude).toFixed(4)}  ALT ${(c.height / 1000).toFixed(1)} km`;
   }
 
@@ -105,9 +106,11 @@ async function main() {
   }
 
   // --- taster
+  let introDone = false;
   window.addEventListener('keydown', (e) => {
     if (e.target.tagName === 'INPUT') return;
     const k = e.key;
+    if (!introDone) { if (k !== 'F1' && k !== 'F2' && k !== 'F3' && k !== 'F4') { director.skip = true; viewer.camera.cancelFlight(); } return; }
     if (k === 'm' || k === 'M') basemaps.next();
     else if (k === 'Escape') { sensors.set(null); target.hide(); $('help').classList.add('hidden'); }
     else if (k === 'F1') { e.preventDefault(); sensors.set('crt'); }
@@ -149,7 +152,8 @@ async function main() {
   await director.flyNorway(5);
   await typing;
   introEl.classList.add('hidden');
-  if (first) await gotoArea(first.slug, !director.skip); else gotoNorway();
+  introDone = true;
+  if (first) await gotoArea(first.slug, true); else gotoNorway();
   updateCoords();
 }
 

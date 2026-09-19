@@ -63,7 +63,7 @@ def upstream_area_grid(bbox, epsg: int, buffer_deg=(0.5, 1.0), res: float = RES)
     return upa, dst_tr
 
 
-def sample_area(upa: np.ndarray, tr, xs: np.ndarray, ys: np.ndarray, win: int = 2) -> np.ndarray:
+def sample_area(upa: np.ndarray, tr, xs: np.ndarray, ys: np.ndarray, win: int = 1) -> np.ndarray:
     """Maks oppstrøms areal (km²) i (2·win+1)² vindu rundt hvert punkt."""
     cols = ((xs - tr.c) / tr.a).astype(int)
     rows = ((ys - tr.f) / tr.e).astype(int)
