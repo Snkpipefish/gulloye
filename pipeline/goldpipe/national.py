@@ -141,16 +141,22 @@ def run_national(cfg: dict):
     mag_grad = np.hypot(sobel(mag, 0), sobel(mag, 1))
     lin = _wms_gray(ngu.BERGGRUNN, "Lineamenter", bbox, shape) > 0
     lin_dens = uniform_filter(lin.astype(np.float32), 7)
+    # Studieområde = land med NGU-dekning (magnetisk kompilasjon dekker Norge, ikke Sverige/Finland)
+    norway = uniform_filter((mag > 0).astype(np.float32), 5) > 0.2
+    land = land & norway
+    D = D & land
+    log(f"  studieområde Norge: {land.sum()} celler, gullceller: {D.sum()}")
 
     pcts = cfg.get("wofe", {}).get("percentiles", {})
     def thr(a, p):
         v = a[land]; return np.percentile(v, p) if v.size else np.inf
-    E1 = (d_base < 5.0)
+    E1 = (d_base < 3.0)
+    E1b = (d_base >= 3.0) & (d_base < 10.0)
     E2 = mag_grad >= thr(mag_grad, pcts.get("magnetisk", 80))
     E3 = lin_dens >= thr(lin_dens, pcts.get("lineament", 80))
     E4 = relief >= thr(relief, 60)
-    post, table, prior = wofe([E1, E2, E3, E4], D, land)
-    names = ["nærhet basemetall-mineralisering < 5 km", "magnetisk gradient ≥ p80", "lineamenttetthet ≥ p80", "relieff ≥ p60"]
+    post, table, prior = wofe([E1, E1b, E2, E3, E4], D, land)
+    names = ["nærhet basemetall-mineralisering < 3 km", "basemetall-mineralisering 3–10 km", "magnetisk gradient ≥ p80", "lineamenttetthet ≥ p80", "relieff ≥ p60"]
     for t, n in zip(table, names):
         t["navn"] = n
     log("  WofE: " + "; ".join(f"{t['navn']}: C={t['C']}" for t in table))

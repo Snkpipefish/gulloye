@@ -42,7 +42,10 @@
 "rank": 1,
 "klasse": "A",
 "navn": "Vikje (Numedalslågen)",
-"hvorfor": "Bratt stryk like oppstrøms – kulper og fjellsprekker. Os: sideelv kommer inn her – grus og tyngre materiale legges i osen og bankehodet nedenfor. Skarp sving – grav på innersvingen og bak store steiner. τ = 124 Pa ≈ 1.5× terskelen: sand og grus flyttes ved flom, gull blir liggende (retensjon). Berggrunn: Kvartsskifer (100 % gunstig oppstrøms). Regulert (Mykstufoss dam, 1964) – minstevann og gammelt elveleie tilgjengelig."
+"hvorfor": "Bratt stryk like oppstrøms – kulper og fjellsprekker. Os: sideelv kommer inn her – grus og tyngre materiale legges i osen og bankehodet nedenfor. Skarp sving – grav på innersvingen og bak store steiner. τ = 124 Pa ≈ 1.5× terskelen: sand og grus flyttes ved flom, gull blir liggende (retensjon). Berggrunn: Kvartsskifer (100 % gunstig oppstrøms). Regulert (Mykstufoss dam, 1964) – minstevann og gammelt elveleie tilgjengelig.",
+"s2_anomali": 3.07,
+"s2_feox_z": 1.02,
+"satsjekk": "Automatisk bildeanalyse: dypt/mørkt vann."
 }
 },
 {
@@ -86,7 +89,10 @@
 "rank": 2,
 "klasse": "A",
 "navn": "Bogstrand (Numedalslågen)",
-"hvorfor": "Foss/stryk rett oppstrøms (9 m fall på 100 m) – fossekulp og fjell i dagen. τ = 213 Pa ≈ 1.9× terskelen: sand og grus flyttes ved flom, gull blir liggende (retensjon). Berggrunn: Kvartsskifer (100 % gunstig oppstrøms). Regulert (Kjerredammen, 1964) – minstevann og gammelt elveleie tilgjengelig."
+"hvorfor": "Foss/stryk rett oppstrøms (9 m fall på 100 m) – fossekulp og fjell i dagen. τ = 213 Pa ≈ 1.9× terskelen: sand og grus flyttes ved flom, gull blir liggende (retensjon). Berggrunn: Kvartsskifer (100 % gunstig oppstrøms). Regulert (Kjerredammen, 1964) – minstevann og gammelt elveleie tilgjengelig.",
+"s2_anomali": 2.67,
+"s2_feox_z": 0.2,
+"satsjekk": "Automatisk bildeanalyse: dypt/mørkt vann."
 }
 },
 {
@@ -130,7 +136,10 @@
 "rank": 3,
 "klasse": "A",
 "navn": "Haugen (Numedalslågen)",
-"hvorfor": "Os: sideelv kommer inn her – grus og tyngre materiale legges i osen og bankehodet nedenfor. τ = 67 Pa ≈ 1.1× terskelen: sand og grus flyttes ved flom, gull blir liggende (retensjon). Berggrunn: Kvartsskifer (100 % gunstig oppstrøms). Regulert (Kjerredammen, 1964) – minstevann og gammelt elveleie tilgjengelig."
+"hvorfor": "Os: sideelv kommer inn her – grus og tyngre materiale legges i osen og bankehodet nedenfor. τ = 67 Pa ≈ 1.1× terskelen: sand og grus flyttes ved flom, gull blir liggende (retensjon). Berggrunn: Kvartsskifer (100 % gunstig oppstrøms). Regulert (Kjerredammen, 1964) – minstevann og gammelt elveleie tilgjengelig.",
+"s2_anomali": 2.96,
+"s2_feox_z": 2.96,
+"satsjekk": "Automatisk bildeanalyse: dypt/mørkt vann."
 }
 },
 {
@@ -174,7 +183,10 @@
 "rank": 4,
 "klasse": "A",
 "navn": "Tinnes (bekk)",
-"hvorfor": "Foss/stryk rett oppstrøms (6 m fall på 100 m) – fossekulp og fjell i dagen. Os: Tinnesbekken kommer inn her – grus og tyngre materiale legges i osen og bankehodet nedenfor. Skarp sving – grav på innersvingen og bak store steiner. τ = 183 Pa ≈ 1.7× terskelen: sand og grus flyttes ved flom, gull blir liggende (retensjon)."
+"hvorfor": "Foss/stryk rett oppstrøms (6 m fall på 100 m) – fossekulp og fjell i dagen. Os: Tinnesbekken kommer inn her – grus og tyngre materiale legges i osen og bankehodet nedenfor. Skarp sving – grav på innersvingen og bak store steiner. τ = 183 Pa ≈ 1.7× terskelen: sand og grus flyttes ved flom, gull blir liggende (retensjon).",
+"s2_anomali": 1.57,
+"s2_feox_z": 1.57,
+"satsjekk": "Automatisk bildeanalyse: grus/sandbanke synlig."
 }
 },
 {
@@ -218,7 +230,10 @@
 "rank": 5,
 "klasse": "A",
 "navn": "Nordre Bjørkgarden (Numedalslågen)",
-"hvorfor": "Os: Nørdsteåe kommer inn her – grus og tyngre materiale legges i osen og bankehodet nedenfor. Strømeffekten faller 40 % over strekningen – tungt materiale slipper her. τ = 38 Pa ≈ 0.9× terskelen: sand og grus flyttes ved flom, gull blir liggende (retensjon). Berggrunn: Kvartsskifer (100 % gunstig oppstrøms). Regulert (Mykstufoss dam, 1964) – minstevann og gammelt elveleie tilgjengelig."
+"hvorfor": "Os: Nørdsteåe kommer inn her – grus og tyngre materiale legges i osen og bankehodet nedenfor. Strømeffekten faller 40 % over strekningen – tungt materiale slipper her. τ = 38 Pa ≈ 0.9× terskelen: sand og grus flyttes ved flom, gull blir liggende (retensjon). Berggrunn: Kvartsskifer (100 % gunstig oppstrøms). Regulert (Mykstufoss dam, 1964) – minstevann og gammelt elveleie tilgjengelig.",
+"s2_anomali": 2.0,
+"s2_feox_z": 0.74,
+"satsjekk": "Automatisk bildeanalyse: dypt/mørkt vann."
 }
 },
 {
@@ -262,7 +277,10 @@
 "rank": 6,
 "klasse": "A",
 "navn": "Skogly (Numedalslågen)",
-"hvorfor": "Os: Nordåe kommer inn her – grus og tyngre materiale legges i osen og bankehodet nedenfor. Skarp sving – grav på innersvingen og bak store steiner. τ = 35 Pa ≈ 1.1× terskelen: sand og grus flyttes ved flom, gull blir liggende (retensjon). Berggrunn: Intermediær vulkansk bergart (89 % gunstig oppstrøms)."
+"hvorfor": "Os: Nordåe kommer inn her – grus og tyngre materiale legges i osen og bankehodet nedenfor. Skarp sving – grav på innersvingen og bak store steiner. τ = 35 Pa ≈ 1.1× terskelen: sand og grus flyttes ved flom, gull blir liggende (retensjon). Berggrunn: Intermediær vulkansk bergart (89 % gunstig oppstrøms).",
+"s2_anomali": 2.8,
+"s2_feox_z": -0.39,
+"satsjekk": "Automatisk bildeanalyse: dypt/mørkt vann."
 }
 },
 {
@@ -306,7 +324,10 @@
 "rank": 7,
 "klasse": "A",
 "navn": "Landsverk (Stærnesbekken)",
-"hvorfor": "Foss/stryk rett oppstrøms (7 m fall på 100 m) – fossekulp og fjell i dagen. Os: sideelv kommer inn her – grus og tyngre materiale legges i osen og bankehodet nedenfor. Strømeffekten faller 58 % over strekningen – tungt materiale slipper her. τ = 118 Pa ≈ 1.3× terskelen: sand og grus flyttes ved flom, gull blir liggende (retensjon). Berggrunn: Granittisk gneis (38 % gunstig oppstrøms)."
+"hvorfor": "Foss/stryk rett oppstrøms (7 m fall på 100 m) – fossekulp og fjell i dagen. Os: sideelv kommer inn her – grus og tyngre materiale legges i osen og bankehodet nedenfor. Strømeffekten faller 58 % over strekningen – tungt materiale slipper her. τ = 118 Pa ≈ 1.3× terskelen: sand og grus flyttes ved flom, gull blir liggende (retensjon). Berggrunn: Granittisk gneis (38 % gunstig oppstrøms).",
+"s2_anomali": 2.04,
+"s2_feox_z": 2.04,
+"satsjekk": "Automatisk bildeanalyse: grus/sandbanke synlig."
 }
 },
 {
@@ -350,7 +371,10 @@
 "rank": 8,
 "klasse": "A",
 "navn": "Nedre Sunde (Sundeelve)",
-"hvorfor": "Foss/stryk rett oppstrøms (13 m fall på 100 m) – fossekulp og fjell i dagen. Skarp sving – grav på innersvingen og bak store steiner. τ = 616 Pa ≈ 2.5× terskelen: sand og grus flyttes ved flom, gull blir liggende (retensjon). Berggrunn: Metasandstein (87 % gunstig oppstrøms)."
+"hvorfor": "Foss/stryk rett oppstrøms (13 m fall på 100 m) – fossekulp og fjell i dagen. Skarp sving – grav på innersvingen og bak store steiner. τ = 616 Pa ≈ 2.5× terskelen: sand og grus flyttes ved flom, gull blir liggende (retensjon). Berggrunn: Metasandstein (87 % gunstig oppstrøms).",
+"s2_anomali": 0.92,
+"s2_feox_z": 0.92,
+"satsjekk": "Automatisk bildeanalyse: dypt/mørkt vann, tett vegetasjon – elva delvis skjult."
 }
 },
 {
@@ -394,7 +418,10 @@
 "rank": 9,
 "klasse": "A",
 "navn": "Gvammen (Tondra)",
-"hvorfor": "Foss/stryk rett oppstrøms (4 m fall på 100 m) – fossekulp og fjell i dagen. Skarp sving – grav på innersvingen og bak store steiner. τ = 179 Pa ≈ 1.7× terskelen: sand og grus flyttes ved flom, gull blir liggende (retensjon). Berggrunn: Kvartsskifer (80 % gunstig oppstrøms). Regulert (Mykstufoss dam, 1964) – minstevann og gammelt elveleie tilgjengelig."
+"hvorfor": "Foss/stryk rett oppstrøms (4 m fall på 100 m) – fossekulp og fjell i dagen. Skarp sving – grav på innersvingen og bak store steiner. τ = 179 Pa ≈ 1.7× terskelen: sand og grus flyttes ved flom, gull blir liggende (retensjon). Berggrunn: Kvartsskifer (80 % gunstig oppstrøms). Regulert (Mykstufoss dam, 1964) – minstevann og gammelt elveleie tilgjengelig.",
+"s2_anomali": 0.04,
+"s2_feox_z": 0.04,
+"satsjekk": "Automatisk bildeanalyse: tett vegetasjon – elva delvis skjult."
 }
 },
 {
@@ -438,7 +465,10 @@
 "rank": 10,
 "klasse": "B",
 "navn": "Øye (Numedalslågen)",
-"hvorfor": "Os: Sønsteåe kommer inn her – grus og tyngre materiale legges i osen og bankehodet nedenfor. Strømeffekten faller 31 % over strekningen – tungt materiale slipper her. Berggrunn: Kvartsskifer (100 % gunstig oppstrøms). Regulert (Mykstufoss dam, 1964) – minstevann og gammelt elveleie tilgjengelig."
+"hvorfor": "Os: Sønsteåe kommer inn her – grus og tyngre materiale legges i osen og bankehodet nedenfor. Strømeffekten faller 31 % over strekningen – tungt materiale slipper her. Berggrunn: Kvartsskifer (100 % gunstig oppstrøms). Regulert (Mykstufoss dam, 1964) – minstevann og gammelt elveleie tilgjengelig.",
+"s2_anomali": 1.98,
+"s2_feox_z": 0.35,
+"satsjekk": "Automatisk bildeanalyse: dypt/mørkt vann."
 }
 },
 {
@@ -482,7 +512,10 @@
 "rank": 11,
 "klasse": "B",
 "navn": "Åsan (Numedalslågen)",
-"hvorfor": "Foss/stryk rett oppstrøms (6 m fall på 100 m) – fossekulp og fjell i dagen. τ = 144 Pa ≈ 1.8× terskelen: sand og grus flyttes ved flom, gull blir liggende (retensjon). Berggrunn: Intermediær vulkansk bergart (76 % gunstig oppstrøms). Regulert (Djupdalsdammen, 1976) – minstevann og gammelt elveleie tilgjengelig."
+"hvorfor": "Foss/stryk rett oppstrøms (6 m fall på 100 m) – fossekulp og fjell i dagen. τ = 144 Pa ≈ 1.8× terskelen: sand og grus flyttes ved flom, gull blir liggende (retensjon). Berggrunn: Intermediær vulkansk bergart (76 % gunstig oppstrøms). Regulert (Djupdalsdammen, 1976) – minstevann og gammelt elveleie tilgjengelig.",
+"s2_anomali": 4.0,
+"s2_feox_z": 0.2,
+"satsjekk": "Automatisk bildeanalyse: dypt/mørkt vann."
 }
 },
 {
@@ -526,7 +559,10 @@
 "rank": 12,
 "klasse": "B",
 "navn": "Bakkebråtån (Numedalslågen)",
-"hvorfor": "Os: Liarbekken kommer inn her – grus og tyngre materiale legges i osen og bankehodet nedenfor. τ = 54 Pa ≈ 1.1× terskelen: sand og grus flyttes ved flom, gull blir liggende (retensjon). Berggrunn: Intermediær vulkansk bergart (76 % gunstig oppstrøms). Regulert (Djupdalsdammen, 1976) – minstevann og gammelt elveleie tilgjengelig."
+"hvorfor": "Os: Liarbekken kommer inn her – grus og tyngre materiale legges i osen og bankehodet nedenfor. τ = 54 Pa ≈ 1.1× terskelen: sand og grus flyttes ved flom, gull blir liggende (retensjon). Berggrunn: Intermediær vulkansk bergart (76 % gunstig oppstrøms). Regulert (Djupdalsdammen, 1976) – minstevann og gammelt elveleie tilgjengelig.",
+"s2_anomali": 3.19,
+"s2_feox_z": 1.25,
+"satsjekk": "Automatisk bildeanalyse: dypt/mørkt vann."
 }
 },
 {
@@ -570,7 +606,10 @@
 "rank": 13,
 "klasse": "B",
 "navn": "Vårvikhaugen (Numedalslågen)",
-"hvorfor": "Os: sideelv kommer inn her – grus og tyngre materiale legges i osen og bankehodet nedenfor. τ = 17 Pa ≈ 1.0× terskelen: sand og grus flyttes ved flom, gull blir liggende (retensjon). Berggrunn: Intermediær vulkansk bergart (91 % gunstig oppstrøms)."
+"hvorfor": "Os: sideelv kommer inn her – grus og tyngre materiale legges i osen og bankehodet nedenfor. τ = 17 Pa ≈ 1.0× terskelen: sand og grus flyttes ved flom, gull blir liggende (retensjon). Berggrunn: Intermediær vulkansk bergart (91 % gunstig oppstrøms).",
+"s2_anomali": 1.09,
+"s2_feox_z": 0.12,
+"satsjekk": "Automatisk bildeanalyse: dypt/mørkt vann."
 }
 },
 {
@@ -614,7 +653,10 @@
 "rank": 14,
 "klasse": "B",
 "navn": "Teigen (Numedalslågen)",
-"hvorfor": "Skarp sving – grav på innersvingen og bak store steiner. τ = 38 Pa ≈ 1.1× terskelen: sand og grus flyttes ved flom, gull blir liggende (retensjon). Berggrunn: Intermediær vulkansk bergart (75 % gunstig oppstrøms). Regulert (Djupdalsdammen, 1976) – minstevann og gammelt elveleie tilgjengelig."
+"hvorfor": "Skarp sving – grav på innersvingen og bak store steiner. τ = 38 Pa ≈ 1.1× terskelen: sand og grus flyttes ved flom, gull blir liggende (retensjon). Berggrunn: Intermediær vulkansk bergart (75 % gunstig oppstrøms). Regulert (Djupdalsdammen, 1976) – minstevann og gammelt elveleie tilgjengelig.",
+"s2_anomali": 2.65,
+"s2_feox_z": 0.74,
+"satsjekk": "Automatisk bildeanalyse: dypt/mørkt vann."
 }
 },
 {
@@ -658,7 +700,10 @@
 "rank": 15,
 "klasse": "B",
 "navn": "Søre Haugen (Rostadelve)",
-"hvorfor": "Foss/stryk rett oppstrøms (5 m fall på 100 m) – fossekulp og fjell i dagen. Skarp sving – grav på innersvingen og bak store steiner. τ = 221 Pa ≈ 1.9× terskelen: sand og grus flyttes ved flom, gull blir liggende (retensjon). Regulert (Djupdalsdammen, 1976) – minstevann og gammelt elveleie tilgjengelig."
+"hvorfor": "Foss/stryk rett oppstrøms (5 m fall på 100 m) – fossekulp og fjell i dagen. Skarp sving – grav på innersvingen og bak store steiner. τ = 221 Pa ≈ 1.9× terskelen: sand og grus flyttes ved flom, gull blir liggende (retensjon). Regulert (Djupdalsdammen, 1976) – minstevann og gammelt elveleie tilgjengelig.",
+"s2_anomali": 0.97,
+"s2_feox_z": 0.52,
+"satsjekk": "Automatisk bildeanalyse: dypt/mørkt vann."
 }
 },
 {
@@ -702,7 +747,10 @@
 "rank": 16,
 "klasse": "B",
 "navn": "Bekkjordsmogen (Numedalslågen)",
-"hvorfor": "Os: Hekteåe kommer inn her – grus og tyngre materiale legges i osen og bankehodet nedenfor. τ = 31 Pa ≈ 0.9× terskelen: sand og grus flyttes ved flom, gull blir liggende (retensjon). Berggrunn: Kvartsskifer (100 % gunstig oppstrøms)."
+"hvorfor": "Os: Hekteåe kommer inn her – grus og tyngre materiale legges i osen og bankehodet nedenfor. τ = 31 Pa ≈ 0.9× terskelen: sand og grus flyttes ved flom, gull blir liggende (retensjon). Berggrunn: Kvartsskifer (100 % gunstig oppstrøms).",
+"s2_anomali": 2.97,
+"s2_feox_z": 0.85,
+"satsjekk": "Automatisk bildeanalyse: dypt/mørkt vann."
 }
 },
 {
@@ -746,7 +794,10 @@
 "rank": 17,
 "klasse": "B",
 "navn": "Ulstad (Ulstadåe)",
-"hvorfor": "Foss/stryk rett oppstrøms (13 m fall på 100 m) – fossekulp og fjell i dagen. Strømeffekten faller 37 % over strekningen – tungt materiale slipper her. τ = 295 Pa ≈ 1.8× terskelen: sand og grus flyttes ved flom, gull blir liggende (retensjon). Berggrunn: Granittisk gneis (36 % gunstig oppstrøms)."
+"hvorfor": "Foss/stryk rett oppstrøms (13 m fall på 100 m) – fossekulp og fjell i dagen. Strømeffekten faller 37 % over strekningen – tungt materiale slipper her. τ = 295 Pa ≈ 1.8× terskelen: sand og grus flyttes ved flom, gull blir liggende (retensjon). Berggrunn: Granittisk gneis (36 % gunstig oppstrøms).",
+"s2_anomali": 4.0,
+"s2_feox_z": 1.22,
+"satsjekk": "Automatisk bildeanalyse: dypt/mørkt vann."
 }
 },
 {
@@ -790,7 +841,10 @@
 "rank": 18,
 "klasse": "B",
 "navn": "Gjuvenes (Juva)",
-"hvorfor": "Skarp sving – grav på innersvingen og bak store steiner. τ = 84 Pa ≈ 1.5× terskelen: sand og grus flyttes ved flom, gull blir liggende (retensjon). Berggrunn: Kvartsskifer (51 % gunstig oppstrøms)."
+"hvorfor": "Skarp sving – grav på innersvingen og bak store steiner. τ = 84 Pa ≈ 1.5× terskelen: sand og grus flyttes ved flom, gull blir liggende (retensjon). Berggrunn: Kvartsskifer (51 % gunstig oppstrøms).",
+"s2_anomali": 0.53,
+"s2_feox_z": 0.53,
+"satsjekk": "Automatisk bildeanalyse: grus/sandbanke synlig."
 }
 },
 {
@@ -834,7 +888,10 @@
 "rank": 19,
 "klasse": "B",
 "navn": "Båtstøhaugen (Bergseidelve)",
-"hvorfor": "Foss/stryk rett oppstrøms (9 m fall på 100 m) – fossekulp og fjell i dagen. τ = 366 Pa ≈ 2.2× terskelen: sand og grus flyttes ved flom, gull blir liggende (retensjon). Berggrunn: Kvartsitt (75 % gunstig oppstrøms). Regulert (Djupdalsdammen, 1976) – minstevann og gammelt elveleie tilgjengelig."
+"hvorfor": "Foss/stryk rett oppstrøms (9 m fall på 100 m) – fossekulp og fjell i dagen. τ = 366 Pa ≈ 2.2× terskelen: sand og grus flyttes ved flom, gull blir liggende (retensjon). Berggrunn: Kvartsitt (75 % gunstig oppstrøms). Regulert (Djupdalsdammen, 1976) – minstevann og gammelt elveleie tilgjengelig.",
+"s2_anomali": 0.71,
+"s2_feox_z": 0.71,
+"satsjekk": "Automatisk bildeanalyse: ingen tydelige trekk."
 }
 },
 {
@@ -878,7 +935,10 @@
 "rank": 20,
 "klasse": "B",
 "navn": "Glitre (Søre Fetjanbekk)",
-"hvorfor": "Foss/stryk rett oppstrøms (15 m fall på 100 m) – fossekulp og fjell i dagen. Skarp sving – grav på innersvingen og bak store steiner. Strømeffekten faller 37 % over strekningen – tungt materiale slipper her. τ = 339 Pa ≈ 2.0× terskelen: sand og grus flyttes ved flom, gull blir liggende (retensjon)."
+"hvorfor": "Foss/stryk rett oppstrøms (15 m fall på 100 m) – fossekulp og fjell i dagen. Skarp sving – grav på innersvingen og bak store steiner. Strømeffekten faller 37 % over strekningen – tungt materiale slipper her. τ = 339 Pa ≈ 2.0× terskelen: sand og grus flyttes ved flom, gull blir liggende (retensjon).",
+"s2_anomali": 2.53,
+"s2_feox_z": 0.88,
+"satsjekk": "Automatisk bildeanalyse: dypt/mørkt vann."
 }
 }
 ]

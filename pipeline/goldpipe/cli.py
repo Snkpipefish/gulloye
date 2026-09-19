@@ -13,7 +13,9 @@ def load_areas():
 
 def write_index():
     areas = []
-    for p in sorted((DATA_DIR / "areas").glob("*/area.json")):
+    order = list(load_areas().keys())
+    paths = sorted((DATA_DIR / "areas").glob("*/area.json"), key=lambda p: order.index(p.parent.name) if p.parent.name in order else 99)
+    for p in paths:
         m = json.loads(p.read_text(encoding="utf-8"))
         areas.append({"slug": m["slug"], "name": m["name"], "region": m.get("region", ""), "bbox": m["bbox"],
                       "generated": m["generated"], "kandidater": m["stats"]["kandidater"]})

@@ -1,0 +1,66 @@
+{
+ "generated": "2026-09-19T21:14:24+00:00",
+ "grid_km": 1,
+ "shape": [
+  1477,
+  1274
+ ],
+ "bounds": {
+  "south": 57.9,
+  "west": 4.5,
+  "north": 71.2,
+  "east": 31.2
+ },
+ "prior": 0.00025929874096055776,
+ "wofe": [
+  {
+   "lag": 0,
+   "W+": 1.403,
+   "W-": -0.364,
+   "C": 1.767,
+   "celler": 31443,
+   "treff": 33,
+   "navn": "nærhet basemetall-mineralisering < 3 km"
+  },
+  {
+   "lag": 1,
+   "W+": 0.194,
+   "W-": -0.107,
+   "C": 0.3,
+   "celler": 111574,
+   "treff": 35,
+   "navn": "basemetall-mineralisering 3–10 km"
+  },
+  {
+   "lag": 2,
+   "W+": 0.297,
+   "W-": -0.091,
+   "C": 0.388,
+   "celler": 69420,
+   "treff": 24,
+   "navn": "magnetisk gradient ≥ p80"
+  },
+  {
+   "lag": 3,
+   "W+": 1.0,
+   "W-": -0.643,
+   "C": 1.643,
+   "celler": 75076,
+   "treff": 53,
+   "navn": "lineamenttetthet ≥ p80"
+  },
+  {
+   "lag": 4,
+   "W+": -0.21,
+   "W-": 0.119,
+   "C": -0.329,
+   "celler": 138836,
+   "treff": 29,
+   "navn": "relieff ≥ p60"
+  }
+ ],
+ "capture_top20": 0.6222222222222222,
+ "n_gold": 104,
+ "description": "Weights of evidence (Bonham-Carter) over 1 km-grid trent på 104 NGU-gullpunkter, kombinert 50/50 med fuzzy gamma (γ=0.9). Bevislag: nærhet basemetall-mineralisering < 3 km, basemetall-mineralisering 3–10 km, magnetisk gradient ≥ p80, lineamenttetthet ≥ p80, relieff ≥ p60. Topp 20 % av arealet fanger 62 % av kjente gullpunkter. Kilder: NGU, Copernicus DEM.",
+ "seconds": 14
+}
