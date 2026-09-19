@@ -14,7 +14,8 @@ export class Overlays {
     this.viewer = viewer;
     this.sources = {};      // id -> DataSource
     this.imagery = {};      // id -> ImageryLayer
-    this.state = { segments: true, candidates: true, ngu: true, national: true, s2: false, metaller: false };
+    this.state = { segments: true, candidates: true, ngu: true, national: true, s2: false, metaller: false, lode: false, eiendom: false, vern: false };
+    this.userPos = null;
     this.candidates = [];   // {entity, props, lat, lon}
     this.nguPoints = [];
   }
@@ -89,12 +90,13 @@ export class Overlays {
       const layer = this.viewer.imageryLayers.addImageryProvider(prov);
       layer.show = this.state.s2; layer.alpha = 0.85; this.imagery.s2 = layer; this.area.s2 = s2;
     } catch (e) { /* ingen S2 */ }
+    if (this.state.lode) await this.loadLode();
     this.viewer.scene.requestRender();
     return this.area;
   }
 
   async unloadArea() {
-    for (const k of ['segments', 'candidates']) if (this.sources[k]) { this.viewer.dataSources.remove(this.sources[k], true); delete this.sources[k]; }
+    for (const k of ['segments', 'candidates', 'lode']) if (this.sources[k]) { this.viewer.dataSources.remove(this.sources[k], true); delete this.sources[k]; }
     if (this.imagery.s2) { this.viewer.imageryLayers.remove(this.imagery.s2, true); delete this.imagery.s2; }
     this.candidates = []; this.area = null;
   }
@@ -103,6 +105,34 @@ export class Overlays {
     const o = {};
     for (const k of props.propertyNames) o[k] = props[k].getValue();
     return o;
+  }
+
+  wms(url, layers, alpha = 0.85) {
+    const p = new Cesium.WebMapServiceImageryProvider({ url, layers, parameters: { transparent: true, format: 'image/png', version: '1.3.0' },
+      tilingScheme: new Cesium.WebMercatorTilingScheme(), tileWidth: 512, tileHeight: 512, credit: '' });
+    const l = this.viewer.imageryLayers.addImageryProvider(p); l.alpha = alpha; return l;
+  }
+
+  ensureWmsLayer(id) {
+    if (this.imagery[id]) return;
+    if (id === 'eiendom') this.imagery.eiendom = this.wms('https://wms.geonorge.no/skwms1/wms.matrikkelkart', 'eiendomsgrense', 0.9);
+    if (id === 'vern') this.imagery.vern = this.wms('https://kart.miljodirektoratet.no/arcgis/services/vern/mapserver/WMSServer', 'naturvern_omrade,naturvern_grense', 0.6);
+  }
+
+  async loadLode() {
+    if (!this.area || this.sources.lode) return;
+    try {
+      const gj = await Cesium.GeoJsonDataSource.load(this.area.base + 'lode.geojson');
+      for (const e of gj.entities.values) {
+        const p = this.plain(e.properties);
+        e.billboard = undefined;
+        e.point = new Cesium.PointGraphics({ pixelSize: p.type === 'gull' ? 10 : 7, color: Cesium.Color.fromCssColorString(p.type === 'gull' ? '#ffd23f' : '#b388ff'),
+          outlineColor: Cesium.Color.BLACK, outlineWidth: 1.5, heightReference: Cesium.HeightReference.CLAMP_TO_GROUND, disableDepthTestDistance: Number.POSITIVE_INFINITY });
+        e.kind = 'lode';
+      }
+      gj.show = this.state.lode; this.viewer.dataSources.add(gj); this.sources.lode = gj;
+    } catch (e) { console.warn('lode.geojson mangler', e); }
+    this.viewer.scene.requestRender();
   }
 
   async loadMetaller() {
@@ -123,6 +153,8 @@ export class Overlays {
   toggle(id, on) {
     this.state[id] = on;
     if (id === 'metaller' && on) this.loadMetaller();
+    if (id === 'lode' && on) this.loadLode();
+    if ((id === 'eiendom' || id === 'vern') && on) this.ensureWmsLayer(id);
     if (id === 'national') { this.updateByAltitude(this.viewer.camera.positionCartographic.height); return this.viewer.scene.requestRender(); }
     if (this.sources[id]) this.sources[id].show = on;
     if (this.imagery[id]) this.imagery[id].show = on;

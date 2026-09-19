@@ -21,7 +21,11 @@ cd pipeline
 ../.venv/bin/python -m goldpipe run --area rollag      # ett dypdykk
 ../.venv/bin/python -m goldpipe national               # nasjonalt 1 km-kart
 ../.venv/bin/python -m goldpipe regression --area rollag
+../.venv/bin/python -m goldpipe auto --n 12 --run       # velg og kjør nye områder fra det nasjonale kartet
+../.venv/bin/python -m goldpipe images                  # regenerer bilder uten å kjøre modellen
 ```
+
+Valgfritt: `export NVE_HYDAPI_KEY=...` (gratis nøkkel fra https://hydapi.nve.no) gir målt vannføring per område.
 
 Områder konfigureres i `pipeline/config/areas.yaml` (bbox, elver, middelflom, dammer). Rå nedlastinger caches i `pipeline/cache/` (ikke i git).
 
@@ -32,6 +36,7 @@ cd web && npm install && npm run dev
 ```
 
 Taster: `1–9` område, `0` Norge, `M` kartstabel, `F1–F4` sensor (CRT/NVG/FLIR/NOIR), `A/B/C` beste punkt, `H` hjelp.
+Knapper: «Min posisjon» (GPS med avstand/retning til nærmeste punkter), «2D». Lag: eiendomsgrenser, verneområder, lodegull, Sentinel-2.
 
 ## Lov og skikk
 

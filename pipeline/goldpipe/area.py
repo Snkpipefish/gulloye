@@ -64,7 +64,7 @@ def _sample_bedrock(net: N.Network, min_up_m: float):
 
 def run_area(slug: str, area: dict, skip_sentinel=False, skip_images=False) -> dict:
     t0 = time.time()
-    bbox = area["bbox"]; epsg = area["utm_epsg"]
+    bbox = area["bbox"]; epsg = 25833   # Kartverkets høydemodell leveres kun i EPSG:25833; dekker hele Norge
     out = DATA_DIR / "areas" / slug
     out.mkdir(parents=True, exist_ok=True)
     tr = Transformer.from_crs("EPSG:4326", f"EPSG:{epsg}", always_xy=True)
@@ -79,7 +79,8 @@ def run_area(slug: str, area: dict, skip_sentinel=False, skip_images=False) -> d
     water = osm.water_polygons(bbox)
     places = osm.named_places(bbox)
     osm_dams = osm.dams(bbox)
-    log(f"  {len(ways)} vassdragsveier, {len(falls)} fosser, {len(water)} vannflater, {len(places)} stedsnavn")
+    roads = osm.roads(bbox)
+    log(f"  {len(ways)} vassdragsveier, {len(falls)} fosser, {len(water)} vannflater, {len(places)} stedsnavn, {len(roads)} veier")
 
     net = N.build_network(ways, epsg)
     N.compute_upstream(net)
@@ -260,7 +261,9 @@ def run_area(slug: str, area: dict, skip_sentinel=False, skip_images=False) -> d
     # --- kandidater
     cands = C.pick_peaks(segs, n_max=20, min_sep=700)
     C.classify(cands)
+    access = C.AccessIndex(roads, tr)
     for c in cands:
+        c.update(access.describe(c["lat"], c["lon"]))
         pl = C.nearest_place(c["lat"], c["lon"], places, maxd=900.0)
         if pl and c["elv"].lower() in pl["name"].lower():
             c["navn"] = pl["name"]
@@ -306,10 +309,42 @@ def run_area(slug: str, area: dict, skip_sentinel=False, skip_images=False) -> d
         except Exception as e:  # noqa: BLE001
             log(f"  amtskart feilet: {e!r}")
 
+    # --- lodegull: NGU-punkter (gull + basemetaller) i området med S2-anomali og berggrunn
+    lode = []
+    s_, w_, n_, e_ = bbox
+    for kind, pts in (("gull", gold), ("basemetall", ngu.basemetal_points())):
+        for lat, lon in pts:
+            if s_ <= lat <= n_ and w_ <= lon <= e_:
+                rec = {"type": kind, "lat": lat, "lon": lon}
+                if kind == "gull":
+                    try:
+                        rec.update(ngu.gold_point_info(lat, lon))
+                    except RuntimeError:
+                        pass
+                if s2meta and "z" in dir():
+                    col = int((lon - s2tr.c) / s2tr.a); row = int((lat - s2tr.f) / s2tr.e)
+                    win = z["oh"][max(0, row - 8):row + 9, max(0, col - 8):col + 9]
+                    rec["s2_oh_z"] = float(np.nanmax(win)) if win.size and np.isfinite(win).any() else None
+                    win = z["feox"][max(0, row - 8):row + 9, max(0, col - 8):col + 9]
+                    rec["s2_feox_z"] = float(np.nanmax(win)) if win.size and np.isfinite(win).any() else None
+                lode.append(rec)
+    X.lode_geojson(lode, out / "lode.geojson")
+
+    # --- NVE Hydapi (valgfritt, krever NVE_HYDAPI_KEY)
+    hydro = None
+    try:
+        from .sources import nve
+        hydro = nve.area_stations(bbox)
+        if hydro:
+            (out / "hydro.json").write_text(json.dumps(hydro, ensure_ascii=False, indent=1), encoding="utf-8")
+    except Exception as e:  # noqa: BLE001
+        log(f"  NVE Hydapi hoppet over: {e!r}")
+
     # --- eksport
     X.segments_geojson(segs, out / "segments.geojson")
     X.candidates_geojson(cands, out / "candidates.geojson")
     X.gpx(cands, out / "points.gpx")
+    X.kml(cands, area["name"], out / "points.kml")
     X.pdf(cands, area, out / "rapport.pdf")
     for river, prof in profiles.items():
         safe = river.lower().replace(" ", "_")
@@ -321,7 +356,8 @@ def run_area(slug: str, area: dict, skip_sentinel=False, skip_images=False) -> d
         "stats": {"segmenter": len(segs), "kjeder": len(chains), "kandidater": len(cands),
                   "vassdragsveier_osm": len(ways), "dtm_px": list(dtm.shape)},
         "rivers": [{"name": r["name"], "q_today": r.get("q_today"), "q_pre": r.get("q_pre")} for r in area.get("rivers", [])],
-        "dams": dams, "profiles": list(profiles.keys()), "sentinel": s2meta,
+        "dams": dams, "profiles": list(profiles.keys()), "sentinel": s2meta, "hydro": hydro, "lode": len(lode),
+        "auto": bool(area.get("auto")),
         "candidates": [{k: v for k, v in c.items() if k != "line"} for c in cands],
         "sources": ["Kartverket NHM DTM 10 m (WCS)", "OpenStreetMap (Overpass)", "NGU BerggrunnWMS3 / MetallerWMS2",
                     "Copernicus Sentinel-2 L2A (Earth Search)", "Esri World Imagery", "Kartverket historiske kart (amtskart)"],

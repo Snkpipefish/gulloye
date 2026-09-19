@@ -130,3 +130,41 @@ def draw_markers(img: Image.Image, pts: list[tuple[float, float, str, str]]) -> 
         tw = d.textlength(lab, font=f)
         d.text((x - tw / 2, y - 8), lab, fill=(255, 255, 255), font=f)
     return img
+
+
+def kml(cands: list[dict], area_name: str, path: Path):
+    import xml.sax.saxutils as su
+    col = {"A": "ff2b39c0", "B": "ff227ee6", "C": "ff0fc4f1"}   # KML aabbggrr
+    lines = ['<?xml version="1.0" encoding="UTF-8"?>', '<kml xmlns="http://www.opengis.net/kml/2.2"><Document>',
+             f'<name>{su.escape("GULLØYE – " + area_name)}</name>']
+    for k, c_ in col.items():
+        lines.append(f'<Style id="k{k}"><IconStyle><color>{c_}</color><scale>1.1</scale></IconStyle></Style>')
+    for c in cands:
+        desc = su.escape(f"P={c['P']:.0f}. {c['hvorfor']} {c.get('adkomst', '')}")
+        lines.append(f'<Placemark><name>{su.escape(f"{c["rank"]}{c["klasse"]} {c["navn"]}")}</name><styleUrl>#k{c["klasse"]}</styleUrl>'
+                     f'<description>{desc}</description><Point><coordinates>{c["lon"]:.5f},{c["lat"]:.5f},0</coordinates></Point></Placemark>')
+    lines.append('</Document></kml>')
+    path.write_text("\n".join(lines), encoding="utf-8")
+
+
+def lode_geojson(recs: list[dict], path: Path):
+    feats = [{"type": "Feature", "geometry": {"type": "Point", "coordinates": [round(r["lon"], 5), round(r["lat"], 5)]},
+              "properties": {k: _r(v) for k, v in r.items() if k not in ("lat", "lon")}} for r in recs]
+    path.write_text(json.dumps({"type": "FeatureCollection", "features": feats}, ensure_ascii=False), encoding="utf-8")
+
+
+def all_points(areas: list[tuple[str, list[dict]]], gpx_path: Path, kml_path: Path):
+    """Samlet GPX/KML for alle områder (til Gaia, Locus, Garmin)."""
+    import xml.sax.saxutils as su
+    g = ['<?xml version="1.0" encoding="UTF-8"?>', '<gpx version="1.1" creator="gulloye" xmlns="http://www.topografix.com/GPX/1/1">']
+    k = ['<?xml version="1.0" encoding="UTF-8"?>', '<kml xmlns="http://www.opengis.net/kml/2.2"><Document><name>GULLØYE – alle områder</name>']
+    for name, cands in areas:
+        k.append(f'<Folder><name>{su.escape(name)}</name>')
+        for c in cands:
+            label = su.escape(f"{name} {c['rank']}{c['klasse']} {c['navn']}")
+            desc = su.escape(f"P={c['P']:.0f}. {c['hvorfor']} {c.get('adkomst', '')}")
+            g.append(f'  <wpt lat="{c["lat"]:.5f}" lon="{c["lon"]:.5f}"><name>{label}</name><desc>{desc}</desc><sym>{"Flag, Red" if c["klasse"] == "A" else "Flag, Blue"}</sym></wpt>')
+            k.append(f'<Placemark><name>{label}</name><description>{desc}</description><Point><coordinates>{c["lon"]:.5f},{c["lat"]:.5f},0</coordinates></Point></Placemark>')
+        k.append('</Folder>')
+    g.append('</gpx>'); k.append('</Document></kml>')
+    gpx_path.write_text("\n".join(g), encoding="utf-8"); kml_path.write_text("\n".join(k), encoding="utf-8")

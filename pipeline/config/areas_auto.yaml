@@ -1,0 +1,229 @@
+areas:
+  auto-seljord:
+    name: Seljord
+    region: automatisk valgt fra nasjonalt kart
+    bbox:
+    - 59.344
+    - 7.837
+    - 59.623
+    - 8.637
+    utm_epsg: 25833
+    manning_n: 0.045
+    d50_coeff: 1.0
+    d50_exp: 0.5
+    q_spes_flom: 0.12
+    auto: true
+    rivers: []
+    dams: []
+    notes: 'Automatisk valgt: klynge med 609 km²-celler i topp 3 % av nasjonal score
+      (sum 443.3). Ingen manuelle vannføringer – alle elver bruker spesifikk middelflom
+      × nedbørfelt.'
+  auto-skien:
+    name: Skien
+    region: automatisk valgt fra nasjonalt kart
+    bbox:
+    - 59.144
+    - 9.362
+    - 59.388
+    - 9.812
+    utm_epsg: 25833
+    manning_n: 0.045
+    d50_coeff: 1.0
+    d50_exp: 0.5
+    q_spes_flom: 0.12
+    auto: true
+    rivers: []
+    dams: []
+    notes: 'Automatisk valgt: klynge med 319 km²-celler i topp 3 % av nasjonal score
+      (sum 234.8). Ingen manuelle vannføringer – alle elver bruker spesifikk middelflom
+      × nedbørfelt.'
+  auto-leirvik:
+    name: Leirvik
+    region: automatisk valgt fra nasjonalt kart
+    bbox:
+    - 59.656
+    - 5.123
+    - 59.971
+    - 5.605
+    utm_epsg: 25833
+    manning_n: 0.045
+    d50_coeff: 1.0
+    d50_exp: 0.5
+    q_spes_flom: 0.25
+    auto: true
+    rivers: []
+    dams: []
+    notes: 'Automatisk valgt: klynge med 300 km²-celler i topp 3 % av nasjonal score
+      (sum 221.4). Ingen manuelle vannføringer – alle elver bruker spesifikk middelflom
+      × nedbørfelt.'
+  auto-leksvik:
+    name: Leksvik
+    region: automatisk valgt fra nasjonalt kart
+    bbox:
+    - 63.628
+    - 10.105
+    - 63.853
+    - 10.692
+    utm_epsg: 25833
+    manning_n: 0.045
+    d50_coeff: 1.0
+    d50_exp: 0.5
+    q_spes_flom: 0.12
+    auto: true
+    rivers: []
+    dams: []
+    notes: 'Automatisk valgt: klynge med 277 km²-celler i topp 3 % av nasjonal score
+      (sum 198.2). Ingen manuelle vannføringer – alle elver bruker spesifikk middelflom
+      × nedbørfelt.'
+  auto-ballangenbálák:
+    name: Ballangen - Bálák
+    region: automatisk valgt fra nasjonalt kart
+    bbox:
+    - 68.209
+    - 16.363
+    - 68.429
+    - 17.034
+    utm_epsg: 25833
+    manning_n: 0.045
+    d50_coeff: 1.0
+    d50_exp: 0.5
+    q_spes_flom: 0.18
+    auto: true
+    rivers: []
+    dams: []
+    notes: 'Automatisk valgt: klynge med 270 km²-celler i topp 3 % av nasjonal score
+      (sum 193.8). Ingen manuelle vannføringer – alle elver bruker spesifikk middelflom
+      × nedbørfelt.'
+  auto-valestrandsfossen:
+    name: Valestrandsfossen
+    region: automatisk valgt fra nasjonalt kart
+    bbox:
+    - 60.493
+    - 5.346
+    - 60.719
+    - 5.796
+    utm_epsg: 25833
+    manning_n: 0.045
+    d50_coeff: 1.0
+    d50_exp: 0.5
+    q_spes_flom: 0.25
+    auto: true
+    rivers: []
+    dams: []
+    notes: 'Automatisk valgt: klynge med 191 km²-celler i topp 3 % av nasjonal score
+      (sum 131.3). Ingen manuelle vannføringer – alle elver bruker spesifikk middelflom
+      × nedbørfelt.'
+  auto-berg:
+    name: Berg
+    region: automatisk valgt fra nasjonalt kart
+    bbox:
+    - 64.362
+    - 12.513
+    - 64.582
+    - 13.037
+    utm_epsg: 25833
+    manning_n: 0.045
+    d50_coeff: 1.0
+    d50_exp: 0.5
+    q_spes_flom: 0.18
+    auto: true
+    rivers: []
+    dams: []
+    notes: 'Automatisk valgt: klynge med 136 km²-celler i topp 3 % av nasjonal score
+      (sum 95.7). Ingen manuelle vannføringer – alle elver bruker spesifikk middelflom
+      × nedbørfelt.'
+  auto-berkak:
+    name: Berkåk
+    region: automatisk valgt fra nasjonalt kart
+    bbox:
+    - 62.65
+    - 9.797
+    - 62.87
+    - 10.247
+    utm_epsg: 25833
+    manning_n: 0.045
+    d50_coeff: 1.0
+    d50_exp: 0.5
+    q_spes_flom: 0.12
+    auto: true
+    rivers: []
+    dams: []
+    notes: 'Automatisk valgt: klynge med 117 km²-celler i topp 3 % av nasjonal score
+      (sum 79.9). Ingen manuelle vannføringer – alle elver bruker spesifikk middelflom
+      × nedbørfelt.'
+  auto-mosjoen:
+    name: Mosjøen
+    region: automatisk valgt fra nasjonalt kart
+    bbox:
+    - 65.652
+    - 13.067
+    - 65.872
+    - 13.517
+    utm_epsg: 25833
+    manning_n: 0.045
+    d50_coeff: 1.0
+    d50_exp: 0.5
+    q_spes_flom: 0.18
+    auto: true
+    rivers: []
+    dams: []
+    notes: 'Automatisk valgt: klynge med 109 km²-celler i topp 3 % av nasjonal score
+      (sum 75.0). Ingen manuelle vannføringer – alle elver bruker spesifikk middelflom
+      × nedbørfelt.'
+  auto-vik:
+    name: Vik
+    region: automatisk valgt fra nasjonalt kart
+    bbox:
+    - 64.252
+    - 10.515
+    - 64.472
+    - 10.965
+    utm_epsg: 25833
+    manning_n: 0.045
+    d50_coeff: 1.0
+    d50_exp: 0.5
+    q_spes_flom: 0.18
+    auto: true
+    rivers: []
+    dams: []
+    notes: 'Automatisk valgt: klynge med 86 km²-celler i topp 3 % av nasjonal score
+      (sum 57.6). Ingen manuelle vannføringer – alle elver bruker spesifikk middelflom
+      × nedbørfelt.'
+  auto-bleskestad:
+    name: Bleskestad
+    region: automatisk valgt fra nasjonalt kart
+    bbox:
+    - 59.524
+    - 6.806
+    - 59.744
+    - 7.256
+    utm_epsg: 25833
+    manning_n: 0.045
+    d50_coeff: 1.0
+    d50_exp: 0.5
+    q_spes_flom: 0.25
+    auto: true
+    rivers: []
+    dams: []
+    notes: 'Automatisk valgt: klynge med 85 km²-celler i topp 3 % av nasjonal score
+      (sum 57.5). Ingen manuelle vannføringer – alle elver bruker spesifikk middelflom
+      × nedbørfelt.'
+  auto-tvedestrand:
+    name: Tvedestrand
+    region: automatisk valgt fra nasjonalt kart
+    bbox:
+    - 58.461
+    - 8.533
+    - 58.681
+    - 8.983
+    utm_epsg: 25833
+    manning_n: 0.045
+    d50_coeff: 1.0
+    d50_exp: 0.5
+    q_spes_flom: 0.12
+    auto: true
+    rivers: []
+    dams: []
+    notes: 'Automatisk valgt: klynge med 77 km²-celler i topp 3 % av nasjonal score
+      (sum 53.6). Ingen manuelle vannføringer – alle elver bruker spesifikk middelflom
+      × nedbørfelt.'

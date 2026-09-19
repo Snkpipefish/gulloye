@@ -40,7 +40,7 @@ async function main() {
   sensors.set(null);
 
   // --- lag-brytere
-  const toggles = [['national', 'NASJONALT POTENSIAL (1 km)'], ['ngu', 'NGU GULLFOREKOMSTER'], ['metaller', 'NGU METALLFLATER'], ['segments', 'ELVEINDEKS P (100 m)'], ['candidates', 'KANDIDATPUNKTER A/B/C'], ['s2', 'SENTINEL-2 ANOMALI']];
+  const toggles = [['national', 'NASJONALT POTENSIAL (1 km)'], ['ngu', 'NGU GULLFOREKOMSTER'], ['metaller', 'NGU METALLFLATER'], ['segments', 'ELVEINDEKS P (100 m)'], ['candidates', 'KANDIDATPUNKTER A/B/C'], ['lode', 'LODEGULL (FAST FJELL)'], ['s2', 'SENTINEL-2 ANOMALI'], ['eiendom', 'EIENDOMSGRENSER'], ['vern', 'VERNEOMRÅDER']];
   const tBox = $('layer-toggles');
   for (const [id, label] of toggles) {
     const l = document.createElement('label'); const i = document.createElement('input'); i.type = 'checkbox'; i.checked = overlays.state[id];
@@ -69,6 +69,8 @@ async function main() {
       target.showSegment(overlays.plain(ent.properties));
     } else if (ent && ent.kind === 'ngu') {
       target.showNgu(overlays.plain(ent.properties));
+    } else if (ent && ent.kind === 'lode') {
+      target.showLode(overlays.plain(ent.properties));
     } else if (!ent) {
       const ray = viewer.camera.getPickRay(m.position); const pos = viewer.scene.globe.pick(ray, viewer.scene);
       if (pos && overlays.state.national && overlays.national && !currentArea) {
@@ -127,6 +129,35 @@ async function main() {
     }
   });
   $('help-link').onclick = (e) => { e.preventDefault(); $('help').classList.toggle('hidden'); };
+
+  // --- GPS: min posisjon + avstand til nærmeste kandidater
+  let posEntity = null;
+  $('gps-btn').onclick = () => {
+    if (!navigator.geolocation) { status('INGEN GPS I NETTLESEREN'); return; }
+    status('HENTER POSISJON…');
+    navigator.geolocation.getCurrentPosition((pos) => {
+      const { latitude: lat, longitude: lon, accuracy } = pos.coords;
+      overlays.userPos = { lat, lon };
+      if (posEntity) viewer.entities.remove(posEntity);
+      posEntity = viewer.entities.add({ position: Cesium.Cartesian3.fromDegrees(lon, lat), point: new Cesium.PointGraphics({ pixelSize: 12, color: Cesium.Color.CYAN, outlineColor: Cesium.Color.BLACK, outlineWidth: 2, heightReference: Cesium.HeightReference.CLAMP_TO_GROUND, disableDepthTestDistance: Number.POSITIVE_INFINITY }),
+        label: new Cesium.LabelGraphics({ text: 'DU', font: 'bold 11px monospace', fillColor: Cesium.Color.CYAN, pixelOffset: new Cesium.Cartesian2(0, -18), disableDepthTestDistance: Number.POSITIVE_INFINITY }) });
+      const near = overlays.candidates.map((c) => ({ c, d: haversine(lat, lon, c.lat, c.lon), b: bearing(lat, lon, c.lat, c.lon) })).sort((a, b) => a.d - b.d).slice(0, 5);
+      const list = near.map((n) => `<tr><td>${n.c.rank}${n.c.klasse} ${n.c.props.navn}</td><td>${(n.d / 1000).toFixed(1)} km ${n.b}</td></tr>`).join('');
+      $('target').innerHTML = `<span class="close">✕</span><h2>MIN POSISJON</h2><div class="sub">${lat.toFixed(5)} N, ${lon.toFixed(5)} Ø · ±${Math.round(accuracy)} m</div>
+        <div class="why">Nærmeste kandidatpunkter i valgt område:</div><table>${list || '<tr><td>Velg et område først (1–9).</td></tr>'}</table>`;
+      $('target').classList.remove('hidden');
+      director.flyPoint(lat, lon, 4000, 2);
+      status('POSISJON LÅST');
+    }, (err) => status('GPS FEILET: ' + err.message), { enableHighAccuracy: true, timeout: 15000 });
+  };
+  function haversine(a, b, c, d) { const R = 6371000, p1 = a * Math.PI / 180, p2 = c * Math.PI / 180, dp = (c - a) * Math.PI / 180, dl = (d - b) * Math.PI / 180; const x = Math.sin(dp / 2) ** 2 + Math.cos(p1) * Math.cos(p2) * Math.sin(dl / 2) ** 2; return 2 * R * Math.asin(Math.sqrt(x)); }
+  function bearing(a, b, c, d) { const y = Math.sin((d - b) * Math.PI / 180) * Math.cos(c * Math.PI / 180); const x = Math.cos(a * Math.PI / 180) * Math.sin(c * Math.PI / 180) - Math.sin(a * Math.PI / 180) * Math.cos(c * Math.PI / 180) * Math.cos((d - b) * Math.PI / 180); const deg = (Math.atan2(y, x) * 180 / Math.PI + 360) % 360; return ['N', 'NØ', 'Ø', 'SØ', 'S', 'SV', 'V', 'NV'][Math.round(deg / 45) % 8]; }
+
+  // --- 2D/3D
+  $('mode-btn').onclick = () => {
+    const sc = viewer.scene;
+    if (sc.mode === Cesium.SceneMode.SCENE3D) { sc.morphTo2D(0.8); $('mode-btn').textContent = '3D'; } else { sc.morphTo3D(0.8); $('mode-btn').textContent = '2D'; }
+  };
   $('help-close').onclick = () => $('help').classList.add('hidden');
 
   // --- data
@@ -136,7 +167,7 @@ async function main() {
   const list = $('area-list');
   areas.forEach((a, i) => {
     const row = document.createElement('div'); row.className = 'row'; row.dataset.slug = a.slug;
-    row.innerHTML = `<span><span class="n">${i + 1}</span> ${a.name.toUpperCase()}</span><span class="n">${a.kandidater} PKT</span>`;
+    row.innerHTML = `<span><span class="n">${i < 9 ? i + 1 : '·'}</span> ${a.name.toUpperCase()}${a.auto ? ' <span class="n">AUTO</span>' : ''}</span><span class="n">${a.kandidater} PKT</span>`;
     row.onclick = () => gotoArea(a.slug); list.appendChild(row);
   });
   const row = document.createElement('div'); row.className = 'row'; row.innerHTML = '<span><span class="n">0</span> NORGE</span><span class="n">OVERSIKT</span>'; row.onclick = gotoNorway; list.appendChild(row);

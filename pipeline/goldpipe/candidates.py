@@ -79,3 +79,56 @@ def why_text(c: dict, dams: list[dict]) -> str:
             parts.append(f"Regulert ({d['name']}, {d['year']}) – minstevann og gammelt elveleie tilgjengelig.")
             break
     return " ".join(parts) if parts else "Kombinasjon av strømfall, terskelnær skjærspenning og feller."
+
+
+class AccessIndex:
+    """Avstand til nærmeste bilvei, sti og parkering (m) for et punkt."""
+
+    def __init__(self, roads: list[dict], tr):
+        import numpy as np
+        from scipy.spatial import cKDTree
+        self.trees = {}
+        for kind in ("road", "path", "parking"):
+            pts, info = [], []
+            for r in roads:
+                if r["kind"] != kind:
+                    continue
+                if kind == "parking":
+                    x, y = tr.transform(r["lon"], r["lat"]); pts.append((x, y)); info.append(r.get("name", ""))
+                else:
+                    g = r["geometry"]
+                    xs, ys = tr.transform([p["lon"] for p in g], [p["lat"] for p in g])
+                    # tett opp linjene til ~25 m
+                    for i in range(len(xs) - 1):
+                        n = max(1, int(math.hypot(xs[i + 1] - xs[i], ys[i + 1] - ys[i]) // 25))
+                        for k in range(n):
+                            f = k / n; pts.append((xs[i] + f * (xs[i + 1] - xs[i]), ys[i] + f * (ys[i + 1] - ys[i])))
+                            info.append(r.get("name") or r.get("highway", ""))
+            self.trees[kind] = (cKDTree(np.array(pts)), info) if pts else None
+        self.tr = tr
+
+    def describe(self, lat, lon) -> dict:
+        x, y = self.tr.transform(lon, lat)
+        out = {}
+        for kind, key in (("road", "d_vei_m"), ("path", "d_sti_m"), ("parking", "d_parkering_m")):
+            t = self.trees.get(kind)
+            if t is None:
+                out[key] = None; continue
+            d, i = t[0].query((x, y))
+            out[key] = round(float(d))
+            if kind == "road":
+                out["vei_navn"] = t[1][i]
+        d = out.get("d_vei_m")
+        if d is None:
+            out["adkomst"] = "Ukjent adkomst (ingen veidata)."
+        elif d < 150:
+            out["adkomst"] = f"Lett: bilvei {d} m unna" + (f" ({out['vei_navn']})" if out.get("vei_navn") else "") + "."
+        elif d < 600:
+            out["adkomst"] = f"Kort gange: bilvei {d} m unna."
+        elif d < 2000:
+            out["adkomst"] = f"Gange {d / 1000:.1f} km fra nærmeste bilvei."
+        else:
+            out["adkomst"] = f"Avsides: {d / 1000:.1f} km fra bilvei – planlegg dagstur."
+        if out.get("d_parkering_m") is not None and out["d_parkering_m"] < 1500:
+            out["adkomst"] += f" Parkering {out['d_parkering_m']} m unna."
+        return out

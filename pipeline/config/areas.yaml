@@ -76,7 +76,7 @@ areas:
     name: Karasjok
     region: Finnmarksvidda, Finnmark
     bbox: [69.00, 24.60, 69.40, 25.80]
-    utm_epsg: 25835
+    utm_epsg: 25833
     manning_n: 0.040
     d50_coeff: 1.0        # D50 = d50_coeff * S^d50_exp (m), min 16 mm
     d50_exp: 0.5

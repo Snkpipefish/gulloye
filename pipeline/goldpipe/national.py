@@ -174,6 +174,11 @@ def run_national(cfg: dict):
     capture = float(((score >= cut) & D).sum() / max(D.sum(), 1))
     log(f"  topp 20 % av arealet fanger {100 * capture:.0f} % av NGU-gullpunktene")
 
+    from .paths import PIPELINE_DIR
+    (PIPELINE_DIR / "out").mkdir(exist_ok=True)
+    np.savez_compressed(PIPELINE_DIR / "out" / "national_score.npz", score=score.astype(np.float32), land=land,
+                        west=tr.c, north=tr.f, dlon=tr.a, dlat=-tr.e)
+
     # PNG (RGBA, gjennomsiktig under 0.35)
     t = np.clip((score - 0.35) / 0.65, 0, 1)
     rgba = np.zeros(shape + (4,), np.uint8)

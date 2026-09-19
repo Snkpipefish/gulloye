@@ -114,3 +114,16 @@ html, body { margin: 0; height: 100%; background: var(--bg); color: var(--text);
   .target { width: calc(100vw - 24px); right: 12px; top: 70px; }
   .reticle { display: none; }
 }
+
+.btnrow { display: flex; gap: 6px; margin-top: 8px; }
+.btnrow .btn { margin-top: 0; flex: 1; }
+.list { max-height: 34vh; overflow: auto; }
+.target .access { color: #9fd8ff; }
+@media (max-width: 820px) {
+  .hud-corner.br { left: 0; right: 0; bottom: 0; text-align: left; padding: 8px; }
+  .hud-corner.br .panel { width: 100%; min-width: 0; }
+  .list { max-height: 22vh; }
+  .brand { font-size: 12px; }
+  .area { font-size: 16px; }
+  .attrib { display: none; }
+}

@@ -72,12 +72,30 @@
   <p>Bevislag: nærhet til NGU-registrerte sulfid-/basemetallmineraliseringer, magnetisk anomaligradient (NGU flymagnetikk), lineamenttetthet (NGU), og relieff/dalbunn fra Copernicus DEM. Til slutt kombineres lagene også med <b>fuzzy gamma</b> (γ = 0,9):</p>
   $$ \mu_\gamma = \Big(\prod_i \mu_i\Big)^{1-\gamma}\Big(1 - \prod_i (1-\mu_i)\Big)^{\gamma} $$
 
-  <h2>4. Datakilder og lisenser</h2>
+  <h2>4. Feltverktøy</h2>
+  <ul>
+    <li><b>Adkomst:</b> avstand fra hvert punkt til nærmeste bilvei, sti og parkeringsplass (OpenStreetMap). Vist i TARGET-panelet og i GPX/KML-beskrivelsen.</li>
+    <li><b>Eiendomsgrenser og verneområder:</b> Kartverkets matrikkelkart (eiendomsgrense) og Miljødirektoratets naturvern-WMS kan slås på som lag. Alluvialt gull tilhører grunneier – finn eier på <a href="https://seeiendom.kartverket.no" target="_blank" rel="noopener">seeiendom.kartverket.no</a>. I verneområder er inngrep i grunnen normalt forbudt.</li>
+    <li><b>Min posisjon:</b> GPS-knappen viser hvor du er, og avstand/retning til de fem nærmeste kandidatpunktene i valgt område. 2D-knappen gir flatt kart som er lettere på mobil.</li>
+    <li><b>Vannføring (NVE):</b> Modellen er regnet ved middelflom. Pipelinen kan hente døgnmiddel vannføring fra NVE Hydapi (gratis nøkkel, miljøvariabel <code>NVE_HYDAPI_KEY</code>) for målestasjoner i området; da vises dagens Q i TARGET-panelet med lenke til Sildre. Lavvann i august–september, rett etter vårflommen har flyttet på grusen, er beste tid.</li>
+    <li><b>Eksport:</b> GPX og KML per område, og samlet for hele Norge, til Gaia GPS, Locus, OsmAnd og Garmin.</li>
+  </ul>
+
+  <h2>5. Lodegull-modus</h2>
+  <p>Laget «Lodegull (fast fjell)» viser NGU-registrerte gullforekomster og basemetall-mineraliseringer (sulfidsoner, kvartsganger) i området. For hvert punkt hentes maks Sentinel-2 hydroksyl-anomali (B11/B12, leire/serisitt-omvandling) og jernoksid-anomali (B4/B2, gossan) innen 300 m. Høy z-verdi betyr at det ligger en synlig omvandlingssone rundt mineraliseringen – et klassisk prospekteringstegn for gull i fast fjell. Løsmasser og skog dekker mye i Norge, så tolk anomaliene som ledetråd, ikke bevis.</p>
+
+  <h2>6. Automatisk valgte områder</h2>
+  <p>Områder merket AUTO er ikke håndplukket. Det nasjonale 1 km-kartet glattes over 5 km, de beste 3 % av arealet deles i sammenhengende klynger, og de tolv klyngene med høyest samlet score (minst 0,6° fra hverandre og fra de manuelle områdene) får et bbox på 25–40 × 45–80 km. Elvemodellen kjøres der uten manuelle vannføringer: alle elver bruker regionens spesifikke middelflom (0,09–0,25 m³/s per km²) ganger nedbørfelt fra Copernicus DEM. Områdene får navn etter største tettsted i OSM innenfor bbox.</p>
+
+  <h2>7. Datakilder og lisenser</h2>
   <table>
     <tr><th>Kilde</th><th>Bruk</th><th>Lisens</th></tr>
     <tr><td><a href="https://www.ngu.no/emne/api-og-wms-tjenester" target="_blank" rel="noopener">NGU</a> – MetallerWMS2, BerggrunnWMS3, GeofysikkWMS4</td><td>gullforekomster, berggrunn, magnetikk, lineamenter</td><td>NLOD</td></tr>
     <tr><td><a href="https://www.kartverket.no/api-og-data" target="_blank" rel="noopener">Kartverket</a> – NHM DTM 10 m (WCS), topo-WMTS, historiske kart (amtskart 1826–1917)</td><td>fall, profil, basiskart, gamle kart</td><td>CC BY 4.0</td></tr>
-    <tr><td><a href="https://www.openstreetmap.org" target="_blank" rel="noopener">OpenStreetMap</a> (Overpass)</td><td>elvenett, fosser, dammer, stedsnavn, innsjøer</td><td>ODbL</td></tr>
+    <tr><td><a href="https://www.openstreetmap.org" target="_blank" rel="noopener">OpenStreetMap</a> (Overpass)</td><td>elvenett, fosser, dammer, stedsnavn, innsjøer, veier og parkering</td><td>ODbL</td></tr>
+    <tr><td>Kartverket matrikkelkart (WMS)</td><td>eiendomsgrenser</td><td>CC BY 4.0</td></tr>
+    <tr><td>Miljødirektoratet naturvern (WMS)</td><td>verneområder</td><td>NLOD</td></tr>
+    <tr><td><a href="https://hydapi.nve.no" target="_blank" rel="noopener">NVE Hydapi</a></td><td>målt vannføring (valgfritt, krever nøkkel)</td><td>NLOD</td></tr>
     <tr><td><a href="https://earth-search.aws.element84.com/v1" target="_blank" rel="noopener">Copernicus Sentinel-2</a> (Earth Search / AWS)</td><td>spektral anomali</td><td>fri og åpen (Copernicus)</td></tr>
     <tr><td><a href="https://s2maps.eu" target="_blank" rel="noopener">EOX Sentinel-2 cloudless</a></td><td>satellittbasiskart</td><td>CC BY 4.0 (Contains modified Copernicus Sentinel data)</td></tr>
     <tr><td>Esri World Imagery</td><td>satellittsjekk-utsnitt, basiskart</td><td>Esri, Maxar, Earthstar Geographics, GIS User Community</td></tr>

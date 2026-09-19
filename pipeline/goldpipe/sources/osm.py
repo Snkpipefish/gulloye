@@ -64,3 +64,23 @@ def water_polygons(bbox) -> list[dict]:
     """Innsjøer/vannflater (natural=water) som lukkede veier – brukes til å gate ut stilleflytende strekninger."""
     q = f'[out:json][timeout:180];(way["natural"="water"]{_bbox_str(bbox)};);out tags geom;'
     return [e for e in _query(q)["elements"] if e.get("type") == "way" and "geometry" in e]
+
+
+def roads(bbox) -> list[dict]:
+    """Kjørbare veier, traktorveier/stier og parkeringsplasser for adkomstvurdering."""
+    b = _bbox_str(bbox)
+    q = (f'[out:json][timeout:180];(way["highway"~"^(motorway|trunk|primary|secondary|tertiary|unclassified|residential|service|track|path|footway|bridleway)$"]{b};'
+         f'node["amenity"="parking"]{b};way["amenity"="parking"]{b};);out tags geom;')
+    out = []
+    for e in _query(q)["elements"]:
+        t = e.get("tags", {})
+        if e.get("type") == "way" and "geometry" in e and t.get("highway"):
+            out.append({"kind": "road" if t["highway"] not in ("path", "footway", "bridleway") else "path",
+                        "highway": t["highway"], "name": t.get("name", ""), "geometry": e["geometry"]})
+        elif t.get("amenity") == "parking":
+            if e.get("type") == "node" and "lat" in e:
+                out.append({"kind": "parking", "lat": e["lat"], "lon": e["lon"], "name": t.get("name", "")})
+            elif e.get("geometry"):
+                g = e["geometry"]
+                out.append({"kind": "parking", "lat": sum(p["lat"] for p in g) / len(g), "lon": sum(p["lon"] for p in g) / len(g), "name": t.get("name", "")})
+    return out

@@ -27,11 +27,30 @@ export class TargetPanel {
       <div class="sub">${c.lat.toFixed(5)} N, ${c.lon.toFixed(5)} Ø · ${p.elv} km ${fmt(p.km)} · ${p.berg ? p.berg.split(' | ')[0] : ''}</div>
       <div class="bar"><i style="width:${Math.max(2, p.P)}%"></i></div>
       <div class="why">${p.hvorfor}</div>
+      ${p.adkomst ? `<div class="why access">🚗 ${p.adkomst}</div>` : ''}
+      ${this.hydroLine()}
       ${p.satsjekk ? `<div class="sub">${p.satsjekk}</div>` : ''}
       <table>${rows.map((r) => `<tr><td>${r[0]}<div class="formula">${r[2]}</div></td><td>${r[1]}</td></tr>`).join('')}</table>
       <img src="${base}satcheck_${c.rank}.jpg" alt="Satellittutsnitt" loading="lazy" onerror="this.remove()" />
-      <div class="dl" style="margin-top:8px"><a href="${base}points.gpx" download>GPX ↓</a><a href="${base}rapport.pdf" target="_blank">PDF ↓</a>
+      <div class="dl" style="margin-top:8px"><a href="${base}points.gpx" download>GPX ↓</a><a href="${base}points.kml" download>KML ↓</a><a href="${base}rapport.pdf" target="_blank">PDF ↓</a>
       <a href="https://www.norgeskart.no/#!?project=norgeskart&layers=1002&zoom=14&lat=${c.lat}&lon=${c.lon}&markerLat=${c.lat}&markerLon=${c.lon}" target="_blank" rel="noopener">Norgeskart ↗</a></div>`;
+    this.el.classList.remove('hidden');
+  }
+
+  hydroLine() {
+    const h = this.ov.area?.hydro; if (!h || !h.stations?.length) return '';
+    const st = h.stations.filter((x) => x.q_last != null)[0]; if (!st) return '';
+    return `<div class="sub">💧 NVE ${st.name} (${st.river || ''}): ${Number(st.q_last).toFixed(1)} m³/s døgnmiddel ${String(st.t_last).slice(0, 10)} · <a href="${st.url}" target="_blank" rel="noopener">Sildre ↗</a></div>`;
+  }
+
+  showLode(props) {
+    const p = props;
+    const z = (v) => (v === null || v === undefined) ? '—' : Number(v).toFixed(1);
+    this.el.innerHTML = `<span class="close">✕</span><h2><span class="badge ${p.type === 'gull' ? '' : 'C'}">${p.type === 'gull' ? 'Au' : 'Cu/Zn/S'}</span>${p.name || (p.type === 'gull' ? 'Gullforekomst' : 'Basemetall-mineralisering')}</h2>
+      <div class="sub">${p.objtype || ''} · NGU · lodegull-modus</div>
+      <div class="why">Fast fjell: kvartsganger og sulfidsoner registrert av NGU. Sentinel-2 hydroksyl-anomali (leire/serisitt-omvandling) og jernoksid-anomali (gossan) innen 300 m indikerer omvandlingssone rundt mineraliseringen.</div>
+      <table><tr><td>Hydroksyl B11/B12 (z)</td><td>${z(p.s2_oh_z)}</td></tr><tr><td>Jernoksid B4/B2 (z)</td><td>${z(p.s2_feox_z)}</td></tr></table>
+      ${p.faktaark ? `<div class="dl" style="margin-top:8px"><a href="${p.faktaark}" target="_blank" rel="noopener">NGU faktaark ↗</a></div>` : ''}`;
     this.el.classList.remove('hidden');
   }
 
