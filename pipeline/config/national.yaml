@@ -1,0 +1,12 @@
+grid_km: 1
+bbox: [57.9, 4.5, 71.2, 31.2]   # sør, vest, nord, øst
+# Spesifikk middelflom (m³/s per km²) per grov region – dokumentert tilnærming
+q_spes_flom:
+  default: 0.12
+  vest: 0.25      # lon < 8 og lat < 64
+  nord: 0.18      # lat >= 64
+  finnmark: 0.09  # lat >= 68.5 og lon > 22
+wofe:
+  percentiles: {geokjemi: 90, magnetisk: 80, lineament: 80}
+  placer_min_p: 60
+fuzzy_gamma: 0.9

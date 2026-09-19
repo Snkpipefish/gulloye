@@ -1,0 +1,12 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+pipeline/cache/
+pipeline/out/
+# Node
+web/node_modules/
+web/dist/
+# misc
+.DS_Store
+*.log

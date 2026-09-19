@@ -1,0 +1,6 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    { "name": "gulloye-web", "runtimeExecutable": "npm", "runtimeArgs": ["run", "dev", "--prefix", "web", "--", "--strictPort"], "port": 5173 }
+  ]
+}

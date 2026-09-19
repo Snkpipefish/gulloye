@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="nb">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GULLØYE – Metode og formler</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css" />
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js" onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}]})"></script>
+  <style>
+    body { margin: 0; background: #070a0e; color: #d9e2ec; font-family: Inter, system-ui, sans-serif; line-height: 1.55; }
+    main { max-width: 860px; margin: 0 auto; padding: 32px 20px 80px; }
+    h1, h2, h3 { font-family: "IBM Plex Mono", Menlo, monospace; letter-spacing: 0.08em; color: #ffd23f; }
+    h1 { font-size: 22px; } h2 { font-size: 16px; margin-top: 36px; border-bottom: 1px solid rgba(255,210,63,0.3); padding-bottom: 6px; }
+    a { color: #ffd23f; } code { font-family: Menlo, monospace; background: #101720; padding: 1px 5px; border-radius: 3px; }
+    table { border-collapse: collapse; width: 100%; font-size: 14px; } td, th { border: 1px solid #22303c; padding: 6px 8px; text-align: left; vertical-align: top; } th { background: #101720; }
+    .warn { border: 1px solid #ff4d4d; background: rgba(255,77,77,0.08); padding: 12px 14px; border-radius: 4px; }
+    .back { font-family: Menlo, monospace; font-size: 12px; letter-spacing: 0.15em; }
+    .katex-display { overflow-x: auto; }
+  </style>
+</head>
+<body>
+<main>
+  <a class="back" href="./">← TILBAKE TIL SATELLITTEN</a>
+  <h1>GULLØYE – METODE OG FORMLER</h1>
+  <p>GULLØYE beregner et <b>relativt potensial for vaskegull (alluvialt gull)</b> langs norske elver, og et grovt nasjonalt potensialkart. Alt er regnet fra åpne data. Modellen sier hvor fysikken tilsier at tunge korn legger seg – den sier ikke at det ligger gull der. Feltarbeid med pann og lupe avgjør.</p>
+
+  <div class="warn"><b>Lov og skikk.</b> Alluvialt gull (gull i løsmasser og elvegrus) tilhører grunneier. Etter mineralloven § 10 skal grunneier og bruker varsles før du leter, og du trenger grunneiers tillatelse for å ta med deg gull. Bruk bare håndredskap (pann, spade, sluse uten motor). Vasking ut over 500 m³ eller med pumper/maskiner er meldepliktig uttak til Direktoratet for mineralforvaltning (DMF). Sjekk kommunen (plan- og bygningsloven) og ikke skad gyteområder eller kantvegetasjon. Kilde: <a href="https://dirmin.no/arkiv/sporsmal/hva-er-gull-og-gullvasking" target="_blank" rel="noopener">dirmin.no</a>.</div>
+
+  <h2>1. Elvemodellen (dypdykk-områder)</h2>
+  <p>Elvene deles i 100 m-segmenter. For hvert segment beregnes strømningen ved <b>middelflom</b> (snøsmelting), og om bunnen er i bevegelse. Gull (ρ = 19 300 kg/m³) er 7 ganger tyngre enn kvarts og legger seg der strømmen mister kraft.</p>
+  <h3>Manning-strømning</h3>
+  <p>Dybden \(h\) løses fra Mannings formel for et bredt rektangulært tverrsnitt (biseksjon):</p>
+  $$ Q = \frac{1}{n}\, w\, h\, R^{2/3}\, S^{1/2}, \qquad R = \frac{w h}{w + 2h} $$
+  <p>der \(Q\) er vannføring (m³/s), \(w\) bredde, \(S\) fall (fra Kartverkets 10 m høydemodell, regresjon over ±300 m, monotont nedstrøms) og \(n\) Mannings ruhet (0,045 fjellelv, 0,035 lavland). Bredde fra OSM eller \(w = 3\sqrt{Q}\).</p>
+  <h3>Skjærspenning og strømeffekt</h3>
+  $$ \tau = \rho\, g\, h\, S \qquad\qquad \omega = \frac{\rho\, g\, Q\, S}{w} $$
+  <h3>Shields-terskel</h3>
+  <p>Bunnen beveger seg når \(\tau\) overstiger den kritiske skjærspenningen for kornstørrelsen \(D_{50}\):</p>
+  $$ \tau_c = \theta_c\,(\rho_s - \rho)\, g\, D_{50}, \quad \theta_c = 0{,}045, \quad D_{50} = \max(0{,}016,\; S^{0{,}5})\ \text{m} $$
+  <p>Kornstørrelsen kobles til fallet (bratt elv = grov bunn), kalibrert slik at flate strekninger får \(\tau_c \approx 12\) Pa og stryk 100–200 Pa. Mobilitet \(M = \tau/\tau_c\).</p>
+  <h3>Hydraulisk ekvivalens for gull</h3>
+  $$ d_{eq} = d_{Au}\,\frac{\rho_{Au}-\rho}{\rho_s-\rho} \approx 11\, d_{Au} \qquad M_{Au} = \frac{\tau}{\theta_c(\rho_{Au}-\rho)\, g\, d_{Au}} $$
+  <p>Et 1 mm gullkorn oppfører seg som en 11 mm kvartsstein. Vinduet der sand og grus flyttes (\(M>1\)) mens gullet blir liggende (\(M_{Au}&lt;1\)) er der gull anrikes.</p>
+  <h3>Feller</h3>
+  <table>
+    <tr><th>Ledd</th><th>Formel</th><th>Fysikk</th></tr>
+    <tr><td>Avsetning \(D\)</td><td>\(D_i = \mathrm{clip}\!\left(\frac{\omega_{i-1}-\omega_i}{\omega_{i-1}},0,1\right)\), glattet over 3 segmenter</td><td>Der strømeffekten faller (utløp av juv, foss ut i kulp) slipper strømmen det tyngste først.</td></tr>
+    <tr><td>Retensjon \(R\)</td><td>\(R = \exp\!\left(-\frac{(\ln M - \ln 1{,}5)^2}{2\cdot 0{,}6^2}\right)\)</td><td>Toppen ligger rett over terskelen: lettere materiale vaskes vekk, gull blir igjen.</td></tr>
+    <tr><td>Sving</td><td>\(\mathrm{clip}(|\kappa|\cdot 150\,\mathrm{m},0,1)\), \(\kappa\) = krumning over 300 m</td><td>Innersving og bakevjer – lavere hastighet.</td></tr>
+    <tr><td>Os</td><td>\(\exp(-d/200\,\mathrm{m})\) til nærmeste sideelv med ≥ 1,5 km oppstrøms nett</td><td>Sideelva bringer nytt materiale og bremser i hovedelva.</td></tr>
+    <tr><td>Foss/stryk</td><td>\(\exp(-d/300\,\mathrm{m})\) nedstrøms fall ≥ 3 m per 100 m, eller OSM-foss</td><td>Fossekulp, jettegryter og fjellsprekker fanger tungt materiale.</td></tr>
+    <tr><td>Kilde \(B\)</td><td>\(B = \big(0{,}5 + 0{,}7\, f_{berg} + 0{,}2\, e^{-d_{Au}/5\,\mathrm{km}}\big)\cdot A_f\), \(A_f = \mathrm{clip}(0{,}4 + 0{,}2\log_{10} A,\ 0{,}4,\ 1{,}1)\)</td><td>\(f_{berg}\) = andel av oppstrøms elvenett i gunstig berggrunn (kvartsitt, grønnstein, amfibolitt, glimmerskifer …) fra NGU 1:250 000; \(d_{Au}\) = avstand til nærmeste NGU-registrerte gullforekomst; \(A\) = nedbørfelt (km²) fra Copernicus DEM – større felt drenerer mer kildebergart.</td></tr>
+  </table>
+  <h3>Indeks</h3>
+  <p>Innsnevring («juv»): \(\mathrm{juv} = \mathrm{clip}((w_Q - w_{DTM})/w_Q, 0, 1)\), der \(w_{DTM}\) er kanalbredden målt i høydemodellen (tverrsnitt, piksler under vannflate + 1,5 m) og \(w_Q = 3\sqrt{Q}\). En kanal som er mye smalere enn vannføringen tilsier, er en fjellkanal med jettegryter og sprekker.</p>
+  $$ P_{raw} = \left(0{,}20 D + 0{,}25 R + 0{,}15\,\mathrm{sving} + 0{,}15\,\mathrm{os} + 0{,}15\,\mathrm{foss} + 0{,}10\,\mathrm{juv}\right)\cdot \mathrm{port}\cdot B, \qquad P = 100\,\frac{P_{raw}}{\max P_{raw}} $$
+  <p>Porten er 0 når \(\tau &lt; 0{,}3\,\tau_c\) (ingen transport, innsjøer) eller \(\omega &lt; 0{,}5\) W/m². P normaliseres per område, så tallene kan bare sammenlignes innenfor ett dypdykk.</p>
+  <h3>Vannføring</h3>
+  <p>Middelflom for hovedelvene legges inn manuelt fra NVE-rapporter (i dag og før regulering), med minstevannsstrekninger under dammer. Sideelver får \(Q = q_s \cdot A\), der nedbørfeltet \(A\) beregnes fra Copernicus DEM 30 m (D8-strømretning med fylte søkk, pyflwdir) i 60 m-oppløsning, og \(q_s\) er spesifikk middelflom for regionen (0,09–0,25 m³/s per km²). Vannføringen er den største usikkerheten i modellen.</p>
+
+  <h2>2. Sentinel-2 spektral anomali</h2>
+  <p>Median av inntil 4 skyfrie sommerscener (Copernicus Sentinel-2 L2A via Earth Search). Maske: SCL ∈ {4,5,6,7}, NDVI &lt; 0,55 (bar mark), NDWI &lt; 0 (ikke vann).</p>
+  $$ \text{jernoksid} = \frac{B4}{B2}, \qquad \text{hydroksyl/leire} = \frac{B11}{B12}, \qquad \text{Fe}^{2+} = \frac{B11}{B8} $$
+  $$ z = \frac{x - \mathrm{median}}{1{,}4826\cdot\mathrm{MAD}}, \qquad \text{anomali} = \mathrm{clip}\!\left(\max(z_{FeOx}, z_{OH}, z_{Fe^{2+}}),\,0,\,4\right) $$
+  <p>Jernoksid- og hydroksylanomalier er klassiske indikatorer på hydrotermal omvandling (gossan, sericitt/leire) som gull ofte følger. I vegetert Norge er signalet svakt og brukes bare som støtte.</p>
+
+  <h2>3. Nasjonalt potensialkart (1 km)</h2>
+  <p><b>Weights of evidence</b> (Bonham-Carter): for hvert binært bevislag \(E\) og kjente gullpunkter \(D\) (NGU, 104 stk.):</p>
+  $$ W^+ = \ln\frac{P(E\mid D)}{P(E\mid \bar D)}, \qquad W^- = \ln\frac{P(\bar E\mid D)}{P(\bar E\mid \bar D)}, \qquad C = W^+ - W^- $$
+  $$ \mathrm{logit}(\text{post}) = \mathrm{logit}(\text{prior}) + \sum_k W_k $$
+  <p>Bevislag: nærhet til NGU-registrerte sulfid-/basemetallmineraliseringer, magnetisk anomaligradient (NGU flymagnetikk), lineamenttetthet (NGU), og relieff/dalbunn fra Copernicus DEM. Til slutt kombineres lagene også med <b>fuzzy gamma</b> (γ = 0,9):</p>
+  $$ \mu_\gamma = \Big(\prod_i \mu_i\Big)^{1-\gamma}\Big(1 - \prod_i (1-\mu_i)\Big)^{\gamma} $$
+
+  <h2>4. Datakilder og lisenser</h2>
+  <table>
+    <tr><th>Kilde</th><th>Bruk</th><th>Lisens</th></tr>
+    <tr><td><a href="https://www.ngu.no/emne/api-og-wms-tjenester" target="_blank" rel="noopener">NGU</a> – MetallerWMS2, BerggrunnWMS3, GeofysikkWMS4</td><td>gullforekomster, berggrunn, magnetikk, lineamenter</td><td>NLOD</td></tr>
+    <tr><td><a href="https://www.kartverket.no/api-og-data" target="_blank" rel="noopener">Kartverket</a> – NHM DTM 10 m (WCS), topo-WMTS, historiske kart (amtskart 1826–1917)</td><td>fall, profil, basiskart, gamle kart</td><td>CC BY 4.0</td></tr>
+    <tr><td><a href="https://www.openstreetmap.org" target="_blank" rel="noopener">OpenStreetMap</a> (Overpass)</td><td>elvenett, fosser, dammer, stedsnavn, innsjøer</td><td>ODbL</td></tr>
+    <tr><td><a href="https://earth-search.aws.element84.com/v1" target="_blank" rel="noopener">Copernicus Sentinel-2</a> (Earth Search / AWS)</td><td>spektral anomali</td><td>fri og åpen (Copernicus)</td></tr>
+    <tr><td><a href="https://s2maps.eu" target="_blank" rel="noopener">EOX Sentinel-2 cloudless</a></td><td>satellittbasiskart</td><td>CC BY 4.0 (Contains modified Copernicus Sentinel data)</td></tr>
+    <tr><td>Esri World Imagery</td><td>satellittsjekk-utsnitt, basiskart</td><td>Esri, Maxar, Earthstar Geographics, GIS User Community</td></tr>
+    <tr><td><a href="https://registry.opendata.aws/copernicus-dem/" target="_blank" rel="noopener">Copernicus DEM 30 m</a></td><td>nasjonalt relieff</td><td>Copernicus</td></tr>
+    <tr><td><a href="https://github.com/bilawalsidhu/gods-eye-view" target="_blank" rel="noopener">gods-eye-view</a></td><td>inspirasjon: globus, HUD, sensormoduser</td><td>MIT</td></tr>
+  </table>
+  <p>Kildekode: <a href="https://github.com/Snkpipefish/gulloye" target="_blank" rel="noopener">github.com/Snkpipefish/gulloye</a> (MIT).</p>
+</main>
+</body>
+</html>

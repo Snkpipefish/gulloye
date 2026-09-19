@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="nb">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GULLØYE – Norsk gullsatellitt</title>
+  <meta name="description" content="Spionsatellitt-visning av modellert gullpotensial langs norske elver. Åpne data fra NGU, Kartverket, Copernicus og OpenStreetMap." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='14' fill='%23000'/><circle cx='16' cy='16' r='9' fill='none' stroke='%23ffd23f' stroke-width='2'/><circle cx='16' cy='16' r='3' fill='%23ffd23f'/></svg>" />
+  <link rel="stylesheet" href="./src/style.css" />
+</head>
+<body>
+  <div id="cesium"></div>
+  <div id="sensor-overlay" class="sensor-none"></div>
+  <div id="boxes"></div>
+
+  <div id="hud" class="hud">
+    <div class="hud-corner tl">
+      <div class="brand"><span class="dot"></span>GULLØYE <span class="dim">// NORSK GULLSATELLITT</span></div>
+      <div id="status" class="mono">INIT…</div>
+      <div id="area-name" class="area"></div>
+    </div>
+    <div class="hud-corner tr">
+      <div class="mono" id="clock"></div>
+      <div class="mono" id="coords">LAT — LON — ALT —</div>
+      <div class="mono dim" id="sensor-label">SENSOR: EO/VIS</div>
+    </div>
+    <div class="hud-corner bl">
+      <div class="panel" id="layers-panel">
+        <div class="panel-title">KARTSTABEL <span class="key">M</span></div>
+        <div id="basemap-chips" class="chips"></div>
+        <div class="panel-title">LAG <span class="key">L</span></div>
+        <div id="layer-toggles" class="toggles"></div>
+      </div>
+    </div>
+    <div class="hud-corner br">
+      <div class="panel" id="areas-panel">
+        <div class="panel-title">MÅL <span class="key">1–9</span></div>
+        <div id="area-list" class="list"></div>
+        <div class="panel-title">SENSOR <span class="key">F1–F4</span></div>
+        <div id="sensor-chips" class="chips"></div>
+        <div class="links"><a href="./metode.html">METODE &amp; FORMLER</a> · <a href="#" id="help-link">HJELP (H)</a></div>
+      </div>
+    </div>
+    <div class="reticle"><div class="r1"></div><div class="r2"></div></div>
+    <div id="target" class="target hidden"></div>
+    <div id="intro" class="intro">
+      <div class="intro-text mono" id="intro-text"></div>
+      <button id="skip" class="btn">HOPP OVER</button>
+    </div>
+    <div id="help" class="help hidden">
+      <div class="help-box">
+        <h3>GULLØYE – hjelp</h3>
+        <p>Modellert gullpotensial langs norske elver for hobbyvaskere. Alt er beregnet fra åpne data: NGU (berggrunn, forekomster), Kartverket (høydemodell, amtskart), OpenStreetMap (elver, stedsnavn), Copernicus Sentinel-2 (spektral anomali) og Esri World Imagery (satellittsjekk).</p>
+        <table>
+          <tr><td><b>1–9</b></td><td>fly til dypdykk-område</td></tr>
+          <tr><td><b>0</b></td><td>hele Norge</td></tr>
+          <tr><td><b>M</b></td><td>bytt kartstabel</td></tr>
+          <tr><td><b>F1–F4 / Esc</b></td><td>sensor: CRT, NVG, FLIR, NOIR / av</td></tr>
+          <tr><td><b>A / B / C</b></td><td>hopp til beste punkt i klassen</td></tr>
+          <tr><td><b>klikk</b></td><td>på punkt/elv: TARGET-panel med tall og formler</td></tr>
+          <tr><td><b>H</b></td><td>denne hjelpen</td></tr>
+        </table>
+        <p class="legal">Alluvialt gull tilhører grunneier. Varsle grunneier og bruker før du vasker (mineralloven § 10). Bare håndredskap; over 500 m³ eller bruk av maskiner må meldes til Direktoratet for mineralforvaltning. Modellen er en beregning, ikke et funn.</p>
+        <button class="btn" id="help-close">LUKK</button>
+      </div>
+    </div>
+    <div class="attrib mono" id="attrib">Kart: Esri · Kartverket (CC BY 4.0) · NGU (NLOD) · EOX Sentinel-2 cloudless (CC BY 4.0) · © OpenStreetMap-bidragsytere · Copernicus Sentinel · Inspirert av gods-eye-view (MIT)</div>
+  </div>
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>

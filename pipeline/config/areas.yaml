@@ -1,0 +1,91 @@
+# Dypdykk-områder. Alle koordinater WGS84 (lat, lon). bbox = [sør, vest, nord, øst].
+# Q-verdier i m³/s = middelflom (snøsmelting). Verdiene er hentet fra NVE-rapporter/prototypen
+# og skaleres langs elva etter lokalt nedbørfeltareal. q_spes brukes for sideelver uten egen Q.
+areas:
+  rollag:
+    name: Rollag
+    region: Numedal, Buskerud
+    bbox: [59.88, 9.05, 60.12, 9.42]
+    utm_epsg: 25833
+    manning_n: 0.045
+    d50_coeff: 1.0        # D50 = d50_coeff * S^d50_exp (m), min 16 mm
+    d50_exp: 0.5
+    q_spes_flom: 0.12      # m³/s per km² for elver uten oppgitt Q (middelflom)
+    rivers:
+      - name: Numedalslågen
+        osm_names: [Numedalslågen, Lågen]
+        q_today: 245        # middelflom i dag (regulert, med omløp) – utløp Rollag
+        q_today_in: 235
+        q_today_out: 250
+        q_pre: 400          # middelflom før regulering (1874–1919)
+        q_pre_in: 355
+        q_pre_out: 400
+        # Strekninger med minstevannføring (dam -> utløp): Q_today overstyres
+        reaches:
+          - {name: Kjerredammen–kraftverksutløp, from: [60.0684, 9.1196], to: [60.0250, 9.1850], q_today: 135}
+          - {name: Djupdalsdammen–Fossan, from: [59.9420, 9.3330], to: [59.9140, 9.3510], q_today: 150}
+      - {name: Storåe, osm_names: [Storåe, Storåa], q_spes_flom: 0.14}
+      - {name: Nørdsteåe, osm_names: [Nørdsteåe, Nordsteåe], q_spes_flom: 0.14}
+      - {name: Vergja, osm_names: [Vergja], q_spes_flom: 0.14}
+      - {name: Medåe, osm_names: [Medåe], q_spes_flom: 0.14}
+      - {name: Tondra, osm_names: [Tondra, Langvassåe], q_spes_flom: 0.14}
+      - {name: Ulstadåe, osm_names: [Ulstadåe], q_spes_flom: 0.14}
+    dams:
+      - {name: Kjerredammen, lat: 60.0684, lon: 9.1196, year: 1964}
+      - {name: Mykstufoss dam, lat: 60.0466, lon: 9.1515, year: 1964}
+      - {name: Djupdalsdammen, lat: 59.9387, lon: 9.3361, year: 1976}
+    notes: >
+      Prototypeområde. Regulert 1964 (Mykstu/Kjerre) og 1976 (Djupdal). Kvartsittfjell på
+      vestsiden (Vegglifjell) drenerer gjennom sideelvene.
+  eidsvoll:
+    name: Eidsvoll
+    region: Romerike, Akershus
+    bbox: [60.25, 11.05, 60.45, 11.40]
+    utm_epsg: 25833
+    manning_n: 0.035
+    d50_coeff: 1.0        # D50 = d50_coeff * S^d50_exp (m), min 16 mm
+    d50_exp: 0.5
+    q_spes_flom: 0.10
+    rivers:
+      - {name: Vorma, osm_names: [Vorma], q_today: 900, q_pre: 900}
+      - {name: Andelva, osm_names: [Andelva], q_today: 60, q_pre: 60}
+      - {name: Risa, osm_names: [Risa], q_spes_flom: 0.12}
+      - {name: Nessa, osm_names: [Nessa], q_spes_flom: 0.12}
+    dams: []
+    notes: >
+      Eidsvoll gullverk (1758–1907) i Brøstadgruvene/Dalsgruvene nord for Eidsvoll. Gull i
+      kvartsganger i Romerike-gneisene; vaskegull historisk kjent i bekkene rundt Gullverket.
+  bindal:
+    name: Bindal
+    region: Helgeland, Nordland
+    bbox: [65.05, 12.10, 65.30, 12.60]
+    utm_epsg: 25833
+    manning_n: 0.045
+    d50_coeff: 1.0        # D50 = d50_coeff * S^d50_exp (m), min 16 mm
+    d50_exp: 0.5
+    q_spes_flom: 0.25
+    rivers:
+      - {name: Åelva, osm_names: [Åelva, Åbjøra], q_spes_flom: 0.25}
+      - {name: Kolsvikelva, osm_names: [Kolsvikelva], q_spes_flom: 0.25}
+      - {name: Reppelva, osm_names: [Reppelva], q_spes_flom: 0.25}
+    dams: []
+    notes: >
+      Kolsvik-gullforekomsten (Bindal): gull i kvartsganger i granitt/gneis, undersøkt av NGU og
+      selskaper siden 1980-tallet. Kystklima gir høy spesifikk avrenning.
+  karasjok:
+    name: Karasjok
+    region: Finnmarksvidda, Finnmark
+    bbox: [69.00, 24.60, 69.40, 25.80]
+    utm_epsg: 25835
+    manning_n: 0.040
+    d50_coeff: 1.0        # D50 = d50_coeff * S^d50_exp (m), min 16 mm
+    d50_exp: 0.5
+    q_spes_flom: 0.09
+    rivers:
+      - {name: Anárjohka, osm_names: [Anárjohka, Anarjohka, Anarjokka], q_today: 250, q_pre: 250}
+      - {name: Iešjohka, osm_names: [Iešjohka, Iesjohka], q_today: 150, q_pre: 150}
+      - {name: Kárášjohka, osm_names: [Kárášjohka, Karasjohka, Karasjokka], q_today: 300, q_pre: 300}
+    dams: []
+    notes: >
+      Karasjok grønnsteinsbelte med NGU-registrerte gullforekomster (bl.a. Iškurasjohka). Norges
+      mest kjente vaskegullområde (Anárjohka/Iešjohka) med hobbyvasking siden 1800-tallet.
