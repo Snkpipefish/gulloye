@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-20T00:57:33+00:00",
+ "generated": "2026-09-20T01:20:04+00:00",
  "areas": [
   {
    "slug": "rollag",
@@ -166,6 +166,20 @@
     10.965
    ],
    "generated": "2026-09-20T00:36:45+00:00",
+   "kandidater": 20,
+   "auto": true
+  },
+  {
+   "slug": "auto-bleskestad",
+   "name": "Bleskestad",
+   "region": "automatisk valgt fra nasjonalt kart",
+   "bbox": [
+    59.524,
+    6.806,
+    59.744,
+    7.256
+   ],
+   "generated": "2026-09-20T01:20:02+00:00",
    "kandidater": 20,
    "auto": true
   },
