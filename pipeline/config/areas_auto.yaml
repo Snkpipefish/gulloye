@@ -55,7 +55,8 @@ areas:
     dams: []
     notes: 'Automatisk valgt: klynge med 300 km²-celler i topp 3 % av nasjonal score
       (sum 221.4). Ingen manuelle vannføringer – alle elver bruker spesifikk middelflom
-      × nedbørfelt.'
+      × nedbørfelt. Elvenett hentet med redusert buffer (0,1°) pga. Overpass-timeout.'
+    osm_buffer_deg: 0.1
   auto-leksvik:
     name: Leksvik
     region: automatisk valgt fra nasjonalt kart
@@ -131,7 +132,8 @@ areas:
     dams: []
     notes: 'Automatisk valgt: klynge med 136 km²-celler i topp 3 % av nasjonal score
       (sum 95.7). Ingen manuelle vannføringer – alle elver bruker spesifikk middelflom
-      × nedbørfelt.'
+      × nedbørfelt. Elvenett hentet med redusert buffer (0,1°) pga. Overpass-timeout.'
+    osm_buffer_deg: 0.1
   auto-berkak:
     name: Berkåk
     region: automatisk valgt fra nasjonalt kart
