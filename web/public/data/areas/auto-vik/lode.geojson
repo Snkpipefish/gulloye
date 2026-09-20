@@ -1,0 +1,1 @@
+{"type": "FeatureCollection", "features": [{"type": "Feature", "geometry": {"type": "Point", "coordinates": [10.79999, 64.36252]}, "properties": {"type": "basemetall", "s2_oh_z": null, "s2_feox_z": null}}, {"type": "Feature", "geometry": {"type": "Point", "coordinates": [10.61483, 64.36737]}, "properties": {"type": "basemetall", "s2_oh_z": 3.07, "s2_feox_z": 15.63}}]}

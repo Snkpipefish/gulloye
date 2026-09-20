@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-19T22:13:03+00:00",
+ "generated": "2026-09-20T00:57:33+00:00",
  "areas": [
   {
    "slug": "rollag",
@@ -11,8 +11,9 @@
     60.12,
     9.42
    ],
-   "generated": "2026-09-19T21:49:13+00:00",
-   "kandidater": 20
+   "generated": "2026-09-19T23:04:56+00:00",
+   "kandidater": 20,
+   "auto": false
   },
   {
    "slug": "eidsvoll",
@@ -24,8 +25,9 @@
     60.45,
     11.4
    ],
-   "generated": "2026-09-19T21:56:01+00:00",
-   "kandidater": 20
+   "generated": "2026-09-19T22:55:48+00:00",
+   "kandidater": 20,
+   "auto": false
   },
   {
    "slug": "bindal",
@@ -37,8 +39,9 @@
     65.3,
     12.6
    ],
-   "generated": "2026-09-19T21:59:55+00:00",
-   "kandidater": 20
+   "generated": "2026-09-19T22:59:16+00:00",
+   "kandidater": 20,
+   "auto": false
   },
   {
    "slug": "karasjok",
@@ -50,12 +53,139 @@
     69.4,
     25.8
    ],
-   "generated": "2026-09-19T22:12:31+00:00",
-   "kandidater": 12
+   "generated": "2026-09-19T22:49:02+00:00",
+   "kandidater": 20,
+   "auto": false
+  },
+  {
+   "slug": "auto-seljord",
+   "name": "Seljord",
+   "region": "automatisk valgt fra nasjonalt kart",
+   "bbox": [
+    59.344,
+    7.837,
+    59.623,
+    8.637
+   ],
+   "generated": "2026-09-19T23:20:42+00:00",
+   "kandidater": 20,
+   "auto": true
+  },
+  {
+   "slug": "auto-skien",
+   "name": "Skien",
+   "region": "automatisk valgt fra nasjonalt kart",
+   "bbox": [
+    59.144,
+    9.362,
+    59.388,
+    9.812
+   ],
+   "generated": "2026-09-19T23:30:48+00:00",
+   "kandidater": 20,
+   "auto": true
+  },
+  {
+   "slug": "auto-leksvik",
+   "name": "Leksvik",
+   "region": "automatisk valgt fra nasjonalt kart",
+   "bbox": [
+    63.628,
+    10.105,
+    63.853,
+    10.692
+   ],
+   "generated": "2026-09-19T23:44:11+00:00",
+   "kandidater": 20,
+   "auto": true
+  },
+  {
+   "slug": "auto-ballangenbálák",
+   "name": "Ballangen - Bálák",
+   "region": "automatisk valgt fra nasjonalt kart",
+   "bbox": [
+    68.209,
+    16.363,
+    68.429,
+    17.034
+   ],
+   "generated": "2026-09-19T23:58:13+00:00",
+   "kandidater": 20,
+   "auto": true
+  },
+  {
+   "slug": "auto-valestrandsfossen",
+   "name": "Valestrandsfossen",
+   "region": "automatisk valgt fra nasjonalt kart",
+   "bbox": [
+    60.493,
+    5.346,
+    60.719,
+    5.796
+   ],
+   "generated": "2026-09-20T00:07:46+00:00",
+   "kandidater": 20,
+   "auto": true
+  },
+  {
+   "slug": "auto-berkak",
+   "name": "Berkåk",
+   "region": "automatisk valgt fra nasjonalt kart",
+   "bbox": [
+    62.65,
+    9.797,
+    62.87,
+    10.247
+   ],
+   "generated": "2026-09-20T00:23:08+00:00",
+   "kandidater": 20,
+   "auto": true
+  },
+  {
+   "slug": "auto-mosjoen",
+   "name": "Mosjøen",
+   "region": "automatisk valgt fra nasjonalt kart",
+   "bbox": [
+    65.652,
+    13.067,
+    65.872,
+    13.517
+   ],
+   "generated": "2026-09-20T00:30:46+00:00",
+   "kandidater": 20,
+   "auto": true
+  },
+  {
+   "slug": "auto-vik",
+   "name": "Vik",
+   "region": "automatisk valgt fra nasjonalt kart",
+   "bbox": [
+    64.252,
+    10.515,
+    64.472,
+    10.965
+   ],
+   "generated": "2026-09-20T00:36:45+00:00",
+   "kandidater": 20,
+   "auto": true
+  },
+  {
+   "slug": "auto-tvedestrand",
+   "name": "Tvedestrand",
+   "region": "automatisk valgt fra nasjonalt kart",
+   "bbox": [
+    58.461,
+    8.533,
+    58.681,
+    8.983
+   ],
+   "generated": "2026-09-20T00:57:33+00:00",
+   "kandidater": 20,
+   "auto": true
   }
  ],
  "national": {
-  "generated": "2026-09-19T22:13:03+00:00",
+  "generated": "2026-09-19T22:26:28+00:00",
   "grid_km": 1,
   "shape": [
    1477,
@@ -118,6 +248,6 @@
   "capture_top20": 0.6222222222222222,
   "n_gold": 104,
   "description": "Weights of evidence (Bonham-Carter) over 1 km-grid trent på 104 NGU-gullpunkter, kombinert 50/50 med fuzzy gamma (γ=0.9). Bevislag: nærhet basemetall-mineralisering < 3 km, basemetall-mineralisering 3–10 km, magnetisk gradient ≥ p80, lineamenttetthet ≥ p80, relieff ≥ p60. Topp 20 % av arealet fanger 62 % av kjente gullpunkter. Kilder: NGU, Copernicus DEM.",
-  "seconds": 31
+  "seconds": 18
  }
 }
