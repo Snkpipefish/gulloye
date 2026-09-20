@@ -3,7 +3,7 @@ from __future__ import annotations
 
 from ..cache import cached_json
 
-OVERPASS = ["https://overpass-api.de/api/interpreter", "https://overpass.kumi.systems/api/interpreter"]
+OVERPASS = ["https://overpass-api.de/api/interpreter", "https://overpass.kumi.systems/api/interpreter", "https://overpass.private.coffee/api/interpreter"]
 
 
 def _query(q: str):

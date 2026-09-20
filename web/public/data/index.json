@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-20T01:26:45+00:00",
+ "generated": "2026-09-20T01:48:31+00:00",
  "areas": [
   {
    "slug": "rollag",
@@ -86,6 +86,20 @@
    "auto": true
   },
   {
+   "slug": "auto-leirvik",
+   "name": "Leirvik",
+   "region": "automatisk valgt fra nasjonalt kart",
+   "bbox": [
+    59.656,
+    5.123,
+    59.971,
+    5.605
+   ],
+   "generated": "2026-09-20T01:39:43+00:00",
+   "kandidater": 20,
+   "auto": true
+  },
+  {
    "slug": "auto-leksvik",
    "name": "Leksvik",
    "region": "automatisk valgt fra nasjonalt kart",
@@ -124,6 +138,20 @@
     5.796
    ],
    "generated": "2026-09-20T00:07:46+00:00",
+   "kandidater": 20,
+   "auto": true
+  },
+  {
+   "slug": "auto-berg",
+   "name": "Berg",
+   "region": "automatisk valgt fra nasjonalt kart",
+   "bbox": [
+    64.362,
+    12.513,
+    64.582,
+    13.037
+   ],
+   "generated": "2026-09-20T01:48:30+00:00",
    "kandidater": 20,
    "auto": true
   },
