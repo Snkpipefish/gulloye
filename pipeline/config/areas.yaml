@@ -89,3 +89,26 @@ areas:
     notes: >
       Karasjok grønnsteinsbelte med NGU-registrerte gullforekomster (bl.a. Iškurasjohka). Norges
       mest kjente vaskegullområde (Anárjohka/Iešjohka) med hobbyvasking siden 1800-tallet.
+  skarnes:
+    name: Skarnes
+    region: Sør-Odal, Innlandet
+    bbox: [60.16, 11.45, 60.34, 11.92]
+    utm_epsg: 25833
+    manning_n: 0.032
+    d50_coeff: 1.0
+    d50_exp: 0.5
+    q_spes_flom: 0.10
+    focus: {name: Spiksetsvingen, lat: 60.2426, lon: 11.6460}
+    osm_buffer_deg: 0.08
+    rivers:
+      - name: Glomma
+        osm_names: [Glomma, Glåma]
+        q_today: 1800        # middelflom Glomma ved Skarnes (NVE, stasjon Nor/Kongsvinger-nivå)
+        q_pre: 1900
+      - {name: Oppstadåa, osm_names: [Oppstadåa, Oppstadåen], q_spes_flom: 0.10}
+      - {name: Storsjøen, osm_names: [Storsjøen], q_spes_flom: 0.10}
+    dams: []
+    notes: >
+      Utgangspunkt Spiksetsvingen: stor meander på Glomma vest for Skarnes. Lavlandsstrekning med lav gradient,
+      sandbanker og innersvinger. Berggrunn: gneiser i Odal-området, kort avstand til Eidsvoll gullverk-provinsen.
+      Vaskegull her vil være finkorna (flakgull) fra Glommas nedbørfelt (Østerdalen, Alvdal/Foldal-mineraliseringer).

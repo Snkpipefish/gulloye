@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-20T01:48:31+00:00",
+ "generated": "2026-09-20T10:01:31+00:00",
  "areas": [
   {
    "slug": "rollag",
@@ -54,6 +54,20 @@
     25.8
    ],
    "generated": "2026-09-19T22:49:02+00:00",
+   "kandidater": 20,
+   "auto": false
+  },
+  {
+   "slug": "skarnes",
+   "name": "Skarnes",
+   "region": "Sør-Odal, Innlandet",
+   "bbox": [
+    60.16,
+    11.45,
+    60.34,
+    11.92
+   ],
+   "generated": "2026-09-20T10:01:31+00:00",
    "kandidater": 20,
    "auto": false
   },

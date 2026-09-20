@@ -357,6 +357,7 @@ def run_area(slug: str, area: dict, skip_sentinel=False, skip_images=False) -> d
                   "vassdragsveier_osm": len(ways), "dtm_px": list(dtm.shape)},
         "rivers": [{"name": r["name"], "q_today": r.get("q_today"), "q_pre": r.get("q_pre")} for r in area.get("rivers", [])],
         "dams": dams, "profiles": list(profiles.keys()), "sentinel": s2meta, "hydro": hydro, "lode": len(lode),
+        "focus": area.get("focus"),
         "auto": bool(area.get("auto")),
         "candidates": [{k: v for k, v in c.items() if k != "line"} for c in cands],
         "sources": ["Kartverket NHM DTM 10 m (WCS)", "OpenStreetMap (Overpass)", "NGU BerggrunnWMS3 / MetallerWMS2",

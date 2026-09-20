@@ -97,6 +97,14 @@ async function main() {
     if (fly) await director.flyArea(a.bbox);
     const meta = await overlays.loadArea(slug);
     refreshBoxes();
+    if (meta.focus && fly) {
+      await director.flyPoint(meta.focus.lat, meta.focus.lon, 3500, 2.5);
+      const near = overlays.candidates.map((c) => ({ c, d: haversine(meta.focus.lat, meta.focus.lon, c.lat, c.lon), b: bearing(meta.focus.lat, meta.focus.lon, c.lat, c.lon) })).sort((x, y) => x.d - y.d).slice(0, 6);
+      $('target').innerHTML = `<span class="close">✕</span><h2>UTGANGSPUNKT · ${meta.focus.name.toUpperCase()}</h2><div class="sub">${meta.focus.lat.toFixed(4)} N, ${meta.focus.lon.toFixed(4)} Ø</div>
+        <div class="why">Nærmeste kandidatpunkter:</div><table>${near.map((n) => `<tr><td>${n.c.rank}${n.c.klasse} ${n.c.props.navn}</td><td>${(n.d / 1000).toFixed(1)} km ${n.b} · P${Math.round(n.c.props.P)}</td></tr>`).join('')}</table>
+        <div class="sub" style="margin-top:6px">Klikk på et punkt i kartet for tall og begrunnelse.</div>`;
+      $('target').classList.remove('hidden');
+    }
     status(`MÅL LÅST · ${meta.stats.segmenter} SEGMENTER · ${meta.stats.kandidater} KANDIDATER`);
     location.hash = slug;
   }
